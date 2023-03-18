@@ -88,7 +88,14 @@ void ft_unsigned(unsigned int nb)
 }
 
 void ft_hex(unsigned int h,char bs){
+    char *base; 
+
+    if (bs == 'X')
+        base = "0123456789ABCDEF";
+    else
+        base = "0123456789abcdef";
     
+
 }
 
 void ft_pnt(){}
@@ -164,3 +171,6 @@ int main(void)
 /* %x Imprime un número hexadecimal (base 16) en minúsculas. */
 /* %X Imprime un número hexadecimal (base 16) en mayúsculas.*/
 /* %p El puntero void * dado como argumento se imprime en formato hexadecimal. */
+/**http://agora.pucp.edu.pe/inf2170681/3.htm*/
+/**https://entredesarrolladores.com/3248/c%C3%B3mo-dividir-un-int-en-dos-bytes-en-c*/
+/**http://www.lcc.uma.es/~tutor-fi/ejercicios5.html*/
