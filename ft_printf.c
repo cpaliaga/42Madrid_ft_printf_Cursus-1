@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/18 17:18:54 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:55:14 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,30 @@ void	ft_unsigned(unsigned int nb)
 void	ft_hex(unsigned int h, char bs)
 {
 	char	*base;
+	char	pre[25];
+	int		i;
 
 	if (bs == 'X')
 		base = "0123456789ABCDEF";
 	else
 		base = "0123456789abcdef";
+	i = 0;
+	if (h == 0)
+		ft_pchar('0');
+	else
+	{
+		while(h != 0)
+		{
+			pre[i] = base[h % 16];
+			h /= 16;
+		}
+		ft_pchain(pre);
+	}
 }
-/**/
-/*void ft_pnt(){}*/
+
+void	ft_point(unsigned int p) 
+{
+}
 
 void	print(const char *phase, ...)
 {
@@ -139,7 +155,7 @@ void	print(const char *phase, ...)
 			}
 			else if (*(phase + 1) == 'p') //EL ARGUMENTO ES UN PUNTERO
 			{
-				ft_pnt(va_arg(args, unsigned int));
+				ft_point(va_arg(args, unsigned int));
 				phase++;
 			}
 		}
@@ -155,7 +171,9 @@ void	print(const char *phase, ...)
 int	main(void)
 {
 	print("Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
-	print("Hola bienvenido a hexadecimal %x en HEXADECIMAL %X \n", 3456, 2021);
+	printf("Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
+	print("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
+	printf("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
 	return (0);
 }
 
