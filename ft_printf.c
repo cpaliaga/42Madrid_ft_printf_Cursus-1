@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/02/20 17:59:16 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:31:52 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void ft_unsigned(unsigned int nb)
         nb /= 10;
     }
 }
-
+/*
 void ft_hex(unsigned int h,char bs){
     char *base; 
 
@@ -97,10 +97,10 @@ void ft_hex(unsigned int h,char bs){
     
 
 }
+*/
+/*void ft_pnt(){}*/
 
-void ft_pnt(){}
-
-int	print (const char* phase, ...)
+void print(const char* phase, ...)
 {
     va_list args;
     va_start(args, phase);
