@@ -38,9 +38,9 @@ void ft_pchain(char *chain)
         write(1, chain, ft_strlen(chain));
 }
 
-unsigned int ft_int_rev(unsigned int nb)
+size_t ft_reverse(unsigned int nb)
 {
-    unsigned int rev;
+    size_t rev;
     rev = 0;
 
     while (nb > 9)
@@ -67,7 +67,7 @@ void ft_pnumber(int n)
         }
         else
         {
-            n = ft_int_rev(n);
+            n = ft_reverse(n);
             while (n > 0)
             {
                 ft_pchar(n % 10 + '0');
@@ -79,7 +79,7 @@ void ft_pnumber(int n)
 
 void ft_unsigned(unsigned int nb)
 {
-    nb = ft_int_rev(nb);
+    nb = ft_reverse(nb);
     while (nb > 0)
     {
         ft_pchar(nb % 10 + '0');
@@ -87,7 +87,10 @@ void ft_unsigned(unsigned int nb)
     }
 }
 
-void ft_hex(){}
+void ft_hex(unsigned int h,char bs){
+    
+}
+
 void ft_pnt(){}
 
 int	print (const char* phase, ...)
