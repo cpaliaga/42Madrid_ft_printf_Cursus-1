@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/18 17:12:41 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:18:54 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,10 @@ void	print(const char *phase, ...)
 				ft_hex(va_arg(args, unsigned int), *(phase + 1));
 				phase++;
 			}
-            else if (*(phase + 1) == 'p') //EL ARGUMENTO ES UN PUNTERO
+			else if (*(phase + 1) == 'p') //EL ARGUMENTO ES UN PUNTERO
 			{
-				//ft_pnt(va_arg(args, unsigned int), *(phase + 1));
-				//phase++;
+				ft_pnt(va_arg(args, unsigned int));
+				phase++;
 			}
 		}
 		else
