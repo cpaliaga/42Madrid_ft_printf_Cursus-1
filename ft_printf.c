@@ -172,10 +172,13 @@ void	print(const char *phase, ...)
 
 int	main(void)
 {
+	char *p =  "hola";
+
 	print("Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
 	printf("Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
 	print("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
 	printf("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
+	printf("Puntero %p \n", p);
 	return (0);
 }
 
