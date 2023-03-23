@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/23 14:25:54 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/23 14:43:37 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_hex(unsigned int h, char bs)
 			pre[i] = base[h % 16];
 			h /= 16;
 		}
-		ft_pchain(pre,i);
+		ft_pchain(pre);
 	}
 }
 
