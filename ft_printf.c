@@ -101,7 +101,7 @@ void    ft_hex(unsigned int h, char bs)
 		write(1, "0", 1);
 	else
 	{
-		while( (h/16) > 0)
+		while((h/16) > 0)
 		{
 			pre[i++] = base[(h % 16)];
 			h /= 16;
@@ -112,8 +112,28 @@ void    ft_hex(unsigned int h, char bs)
 	}
 }
 
-void	ft_point(unsigned int p) 
+void	ft_point(unsigned long long p) 
 {
+	char    *base;
+	char    pre[50];
+	int     i;
+
+	base = "0123456789abcdef";
+	i = 0;
+	if (p == 0)
+		write(1, "0", 1);
+	else
+	{
+		while( (p/16) > 0)
+		{
+			pre[i++] = base[(p % 16)];
+			p /= 16;
+		}
+		pre[i] = base[(p % 16)];
+		write(1, "0x", 2);
+		while (i >= 0)
+			write(1, &pre[i--], 1);
+	}
 }
 
 void	print(const char *phase, ...)
@@ -157,7 +177,7 @@ void	print(const char *phase, ...)
 			}
 			else if (*(phase + 1) == 'p') //EL ARGUMENTO ES UN PUNTERO
 			{
-				ft_point(va_arg(args, unsigned int));
+				ft_point(va_arg(args, unsigned long long));
 				phase++;
 			}
 		}
@@ -178,7 +198,9 @@ int	main(void)
 	printf("Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
 	print("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
 	printf("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
+	print("Puntero %p \n", p);
 	printf("Puntero %p \n", p);
+	print("Puntero %s \n", p);
 	return (0);
 }
 
