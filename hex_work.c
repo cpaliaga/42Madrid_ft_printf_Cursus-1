@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:53:50 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/23 15:21:17 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:27:40 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void    ft_hex(unsigned int h, char bs)
 		while( (h/16) > 0)
 		{
 			z = h % 16;
-			printf("%u", z);
-			write(1, base[z], 1);
+			printf("%u \n", z);
+			//write(1, base[z], 1);
 			//pre[i] = base[z];
 			h /= 16;
 		}
