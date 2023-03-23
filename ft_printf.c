@@ -86,11 +86,11 @@ void	ft_unsigned(unsigned int nb)
 	}
 }
 
-void	ft_hex(unsigned int h, char bs)
+void    ft_hex(unsigned int h, char bs)
 {
-	char	*base;
-	char	pre[25];
-	int		i;
+	char    *base;
+	char    pre[50];
+	int     i;
 
 	if (bs == 'X')
 		base = "0123456789ABCDEF";
@@ -98,15 +98,17 @@ void	ft_hex(unsigned int h, char bs)
 		base = "0123456789abcdef";
 	i = 0;
 	if (h == 0)
-		ft_pchar('0');
+		write(1, "0", 1);
 	else
 	{
-		while(h > 0)
+		while( (h/16) > 0)
 		{
-			pre[i] = base[h % 16];
+			pre[i++] = base[(h % 16)];
 			h /= 16;
 		}
-		ft_pchain(pre);
+		pre[i] = base[(h % 16)];
+		while (i >= 0)
+			write(1, &pre[i--], 1);
 	}
 }
 

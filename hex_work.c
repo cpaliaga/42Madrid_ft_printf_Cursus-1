@@ -13,27 +13,19 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void    ft_pchain(char *chain)
+/*
+void	ft_phex(char *pre, int i)
 {
-	int	len;
 
-	len = 0;
-	if (!chain)
-		write(1, "(null)", 6);
-	else
-		while(chain[len] != '\0')
-			len++;
-		write(1, chain, len);
 }
+*/
 
 void    ft_hex(unsigned int h, char bs)
 {
 	char    *base;
 	char    pre[25];
 	int     i;
-	unsigned int	z;
-	
-	z = 0;
+
 	if (bs == 'X')
 		base = "0123456789ABCDEF";
 	else
@@ -45,13 +37,12 @@ void    ft_hex(unsigned int h, char bs)
 	{
 		while( (h/16) > 0)
 		{
-			z = h % 16;
-			printf("%u \n", z);
-			//write(1, base[z], 1);
-			//pre[i] = base[z];
+			pre[i++] = base[(h % 16)];
 			h /= 16;
 		}
-		//ft_pchain(pre);
+		pre[i] = base[(h % 16)];
+		while (i >= 0)
+			write(1, &pre[i--], 1);
 	}
 }
 
@@ -59,8 +50,9 @@ int	main()
 {
 	unsigned int a = 23454;
 
-	printf("%X \n", a);	
+	printf("%X numero \n", a);	
 	ft_hex(a, 'X');
+	printf("\n");	
 
 	return (0);
 }
