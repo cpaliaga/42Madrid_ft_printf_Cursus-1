@@ -6,18 +6,18 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:36 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/23 19:04:52 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:41:26 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_pchar(int c)
+void	ft_pchar(int c, int *wr)
 {
-	write(1, &c, 1);
+	wr += write(1, &c, 1);
 }
 
-void	ft_pchain(char *chain)
+void	ft_pchain(char *chain, int *wr)
 {
 	size_t	a;
 
@@ -25,7 +25,7 @@ void	ft_pchain(char *chain)
 	while (chain[a] != '\0')
 		a++;
 	if (!chain)
-		write(1, "(null)", 6);
+		wr += write(1, "(null)", 6);
 	else
-		write(1, chain, a);
+		wr += write(1, chain, a);
 }

@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:19:35 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:47:57 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	conversion_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
-		ft_pchar(va_arg(*args, int), int *wr);
+		ft_pchar(va_arg(*args, int), &wr);
 		phase++;
 	}
 	else if (*(phase + 1) == '%')
 	{
-		ft_pchar('%', int *wr);
+		ft_pchar('%', &wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 's')
 	{
-		ft_pchain(va_arg (*args, char *), int *wr);
+		ft_pchain(va_arg (*args, char *), &wr);
 		phase++;
 	}
 }
@@ -35,22 +35,22 @@ void	conversion_two(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'd' || *(phase + 1) == 'i')
 	{
-		ft_pnumber(va_arg(args, int), int *wr);
+		ft_pnumber(va_arg(args, int), &wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 'u')
 	{
-		ft_unsigned(va_arg(args, unsigned int), int *wr);
+		ft_unsigned(va_arg(args, unsigned int), &wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 'x' || *(phase + 1) == 'X')
 	{
-		ft_hex(va_arg(args, unsigned int), *(phase + 1), int *wr);
+		ft_hex(va_arg(args, unsigned int), *(phase + 1), &wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 'p')
 	{
-		ft_point(va_arg(args, unsigned long long), int *wr);
+		ft_point(va_arg(args, unsigned long long), &wr);
 		phase++;
 	}
 }

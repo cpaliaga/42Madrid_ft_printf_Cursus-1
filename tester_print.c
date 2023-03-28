@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/28 10:53:25 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:34:52 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@ int	main(void)
 {
 	char *p =  "hola";
 
-	print("Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
-	printf("Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
-	print("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
-	printf("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
-	print("Puntero %p \n", p);
-	printf("Puntero %p \n", p);
-	int dev = printf("Puntero %p \n", p);
-	printf("%i - comprueba \n", dev);
-	print("Puntero %s \n", p);
+	print("M Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
+	printf("O Hola bienvenido a %s, %% estamos en %i - %u \n", "hardfloat.es", 2021, 1234567891);
+	print("M hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
+	printf("O hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
+	
+	//print("M Puntero %p \n", p);
+	//printf("O Puntero %p \n", p);
+	
+	int dev = printf("O Puntero %p \n", p);
+	printf("O %i - comprueba \n", dev);
+
+	print("M Puntero cadena  %s \n", p);
+	printf("O Puntero cadena  %s \n", p);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:15 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/23 19:14:44 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:31:30 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,42 +27,42 @@ size_t	ft_reverse(unsigned int nb)
 	return (rev);
 }
 
-void	ft_pnumber(int n)
+void	ft_pnumber(int n, int *wr)
 {
 	if (n == -2147483648)
 	{
-		write(1, "-2147483648", 11);
+		wr += write(1, "-2147483648", 11);
 	}
 	else
 	{
 		if (n < 0)
 		{
-			ft_pnumber(n = n * -1);
-			write(1, "-", 1);
+			ft_pnumber(n = n * -1, &wr);
+			wr += write(1, "-", 1);
 		}
 		else
 		{
 			n = ft_reverse(n);
 			while (n > 0)
 			{
-				ft_pchar(n % 10 + '0');
+				ft_pchar(n % 10 + '0', &wr);
 				n /= 10;
 			}
 		}
 	}
 }
 
-void	ft_unsigned(unsigned int nb)
+void	ft_unsigned(unsigned int nb, int *wr)
 {
 	nb = ft_reverse(nb);
 	while (nb > 0)
 	{
-		ft_pchar(nb % 10 + '0');
+		ft_pchar(nb % 10 + '0', &wr);
 		nb /= 10;
 	}
 }
 
-void	ft_hex(unsigned int h, char bs)
+void	ft_hex(unsigned int h, char bs, int *wr)
 {
 	char	*base;
 	char	pre[50];
@@ -74,7 +74,7 @@ void	ft_hex(unsigned int h, char bs)
 		base = "0123456789abcdef";
 	i = 0;
 	if (h == 0)
-		write(1, "0", 1);
+		wr += write(1, "0", 1);
 	else
 	{
 		while ((h / 16) > 0)
@@ -84,11 +84,11 @@ void	ft_hex(unsigned int h, char bs)
 		}
 		pre[i] = base[(h % 16)];
 		while (i >= 0)
-			write(1, &pre[i--], 1);
+			wr += write(1, &pre[i--], 1);
 	}
 }
 
-void	ft_point(unsigned long long p)
+void	ft_point(unsigned long long p, int *wr)
 {
 	char	*base;
 	char	pre[50];
@@ -97,7 +97,7 @@ void	ft_point(unsigned long long p)
 	base = "0123456789abcdef";
 	i = 0;
 	if (p == 0)
-		write(1, "0", 1);
+		wr += write(1, "0", 1);
 	else
 	{
 		while ((p / 16) > 0)
@@ -106,8 +106,8 @@ void	ft_point(unsigned long long p)
 			p /= 16;
 		}
 		pre[i] = base[(p % 16)];
-		write(1, "0x", 2);
+		wr += write(1, "0x", 2);
 		while (i >= 0)
-			write(1, &pre[i--], 1);
+			wr += write(1, &pre[i--], 1);
 	}
 }
