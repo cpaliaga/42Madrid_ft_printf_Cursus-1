@@ -6,16 +6,44 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/23 19:50:51 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/28 11:18:34 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print(const char *phase, ...)
+void	conversion_one(const char *phase, va_list args, int *wr)
 {
+
+			if (*(phase + 1) == 'c')
+			{
+				ft_pchar(va_arg(args, int), int *wr);
+				phase++;
+			}
+			else if (*(phase + 1) == '%')
+			{
+				ft_pchar('%', int *wr);
+				phase++;
+			}
+			else if (*(phase + 1) == 's')
+			{
+				ft_pchain(va_arg (args, char *), int *wr);
+				phase++;
+			}
+}
+
+void	conversion_two()
+{}
+
+
+
+
+int	print(const char *phase, ...)
+{
+	int		wr;
 	va_list	args;
 
+	wr = 0;
 	va_start (args, phase);
 	while (*phase)
 	{
@@ -64,4 +92,5 @@ void	print(const char *phase, ...)
 		phase++;
 	}
 	va_end(args);
+	return (wr);
 }

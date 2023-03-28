@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/23 19:38:27 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/28 10:53:25 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(void)
 	printf("hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
 	print("Puntero %p \n", p);
 	printf("Puntero %p \n", p);
+	int dev = printf("Puntero %p \n", p);
+	printf("%i - comprueba \n", dev);
 	print("Puntero %s \n", p);
 	return (0);
 }
