@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:47:57 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:55:24 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	conversion_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
-		ft_pchar(va_arg(*args, int), &wr);
+		ft_pchar(va_arg(args, int), &wr);
 		phase++;
 	}
 	else if (*(phase + 1) == '%')
@@ -26,7 +26,7 @@ void	conversion_one(const char *phase, va_list *args, int *wr)
 	}
 	else if (*(phase + 1) == 's')
 	{
-		ft_pchain(va_arg (*args, char *), &wr);
+		ft_pchain(va_arg (args, char *), &wr);
 		phase++;
 	}
 }
