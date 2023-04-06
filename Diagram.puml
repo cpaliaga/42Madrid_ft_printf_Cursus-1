@@ -1,0 +1,6 @@
+@startuml ft_printf_flow
+ft_printf -> Bob: Authentication Request
+Bob --> ft_printf: Authentication Response
+ft_printf -> Bob: Another authentication Request
+ft_printf <-- Bob: another authentication Response
+@enduml

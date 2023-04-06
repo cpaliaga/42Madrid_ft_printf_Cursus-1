@@ -37,7 +37,7 @@ void	ft_pnumber(int n, int *wr)
 	{
 		if (n < 0)
 		{
-			ft_pnumber(n = n * -1, &wr);
+			ft_pnumber(n = n * -1, wr);
 			wr += write(1, "-", 1);
 		}
 		else
@@ -45,7 +45,7 @@ void	ft_pnumber(int n, int *wr)
 			n = ft_reverse(n);
 			while (n > 0)
 			{
-				ft_pchar(n % 10 + '0', &wr);
+				ft_pchar(n % 10 + '0', wr);
 				n /= 10;
 			}
 		}
@@ -57,7 +57,7 @@ void	ft_unsigned(unsigned int nb, int *wr)
 	nb = ft_reverse(nb);
 	while (nb > 0)
 	{
-		ft_pchar(nb % 10 + '0', &wr);
+		ft_pchar(nb % 10 + '0', wr);
 		nb /= 10;
 	}
 }
