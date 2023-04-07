@@ -10,28 +10,30 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC_DIR = ./
-SRC_FILES = ft_printf.c ft_util_char.c ft_util_number.c
-SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+DIR_SRC = ./
+FILES_SRC = ft_printf.c ft_util_char.c ft_util_number.c
+SRC = $(addprefix $(DIR_SRC), $(FILES_SRC))
 
-TEST_DIR = ./
-TEST_Alpha = tester_print.c
-TEST_A = $(addprefix $(TEST_DIR), $(TEST_Alpha))
+DIR_TEST_A = ../
+FILES_TEST_A = tester_print.c
+TEST_A = $(addprefix $(DIR_TEST_A), $(FILES_TEST_A))
 
-INC_D = ./
+DIR_EXE = ../
+FILE_EXE = try_print
+EXEC = $(addprefix $(DIR_EXE), $(FILE_EXE))
+
+DIR_INC = ./
 INC_H = ft_printf.h
-INC = $(addprefix $(INC_D), $(INC_H))
+INC = $(addprefix $(DIR_INC), $(INC_H))
+
+NAME = libftprintf.a
+HIDE = .
 
 OBJ = $(subst .c,.o,$(SRC))
 OBJ_B = $(subst .c,.o,$(BONUS))
 CFLAGS = -Wall -Wextra -Werror
 SA = -fsanitize=address
 BUF = -DBUFFER_SIZE=4
-
-LIB = ./
-NAME = ./libftprintf.a
-EXEC = ./ppp
-HIDE = .
 
 #### REGLAS ####
 all: $(NAME)
@@ -42,10 +44,10 @@ $(NAME): $(OBJ)
 	@echo "library $(NAME) created & indexed"
 	
 $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
-	@gcc $(CFLAGS) $(BUF) -I$(INC_D) -c $^ -o $@
+	@gcc $(CFLAGS) $(BUF) -I$(DIR_INC) -c $^ -o $@
 
 ex: $(NAME)
-	@gcc $(CFLAGS) $(BUF) $(TEST_A) -L$(LIB) -lftprintf -o $(EXEC)
+	@gcc $(CFLAGS) $(BUF) $(TEST_A) -L$(DIR_INC) -lftprintf -o $(EXEC)
 
 nor:
 	@norminette $(SRC)$(INC)

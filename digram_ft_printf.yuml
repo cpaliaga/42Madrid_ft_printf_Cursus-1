@@ -33,4 +33,4 @@
 
 <e> NO -> (read STRING)
 <e> YES ->(RETURN 'wr' \nwrite the integer counter)
-(RETURN 'wr')->(end)
+(RETURN 'wr' \nwrite the integer counter)->(end)
