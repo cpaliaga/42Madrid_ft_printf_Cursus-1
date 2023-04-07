@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	conversion_one(const char *phase, va_list *args, int *wr)
+void	analysis_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
@@ -31,7 +31,7 @@ void	conversion_one(const char *phase, va_list *args, int *wr)
 	}
 }
 
-void	conversion_two(const char *phase, va_list *args, int *wr)
+void	analysis_two(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'd' || *(phase + 1) == 'i')
 	{
@@ -66,8 +66,8 @@ int	print(const char *phase, ...)
 	{
 		if (*phase == '%')
 		{
-			conversion_one(phase, &args, &wr);
-			conversion_two(phase, &args, &wr);
+			analysis_one(phase, &args, &wr);
+			analysis_two(phase, &args, &wr);
 			phase++;
 		}
 		else
