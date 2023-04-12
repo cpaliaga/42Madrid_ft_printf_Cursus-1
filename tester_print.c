@@ -17,17 +17,17 @@ int	main(void)
 {
 	char *p =  "hola";
 
-	int M1 = print("M '%s', %% caracter %c \n", "soy una cadena", 'D');
-	print("M se han impreso %d caracteres \n",M1);
-	int o1 = print("O '%s', %% caracter %c \n", "soy una cadena", 'D');
-	print("O se han impreso %d caracteres \n",o1);
-	print("M integer %i - unsigned %u \n", 2021, 1234567891);
+	int M1 = ft_printf("M '%s', %% caracter %c \n", "soy una cadena", 'D');
+	ft_printf("M se han impreso %d caracteres \n",M1);
+	int O1 = ft_printf("O '%s', %% caracter %c \n", "soy una cadena", 'D');
+	ft_printf("O se han impreso %d caracteres \n",O1);
+	ft_printf("M integer %i - unsigned %u \n", 2021, 1234567891);
 	printf("O integer %i - unsigned %u \n", 2021, 1234567891);
-	print("M hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
+	ft_printf("M hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
 	printf("O hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
-	print("M Puntero %p \n", p);
+	ft_printf("M Puntero %p \n", p);
 	printf("O Puntero %p \n", p);
-	print("M Puntero cadena  %s \n", p);
+	ft_printf("M Puntero cadena  %s \n", p);
 	printf("O Puntero cadena  %s \n", p);
 	return (0);
 }
