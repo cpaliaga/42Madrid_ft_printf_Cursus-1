@@ -27,6 +27,6 @@ void	ft_hex(unsigned int h, char bs, int *wr);
 void	ft_point(unsigned long long p, int *wr);
 void	analysis_one(const char *phase, va_list *args, int *wr);
 void	analysis_two(const char *phase, va_list *args, int *wr);
-int		print(const char *phase, ...);
+int		ft_printf(const char *phase, ...);
 
 #endif

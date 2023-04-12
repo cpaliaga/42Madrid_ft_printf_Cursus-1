@@ -55,7 +55,7 @@ void	analysis_two(const char *phase, va_list *args, int *wr)
 	}
 }
 
-int	print(const char *phase, ...)
+int	ft_printf(const char *phase, ...)
 {
 	int		wr;
 	va_list	args;
