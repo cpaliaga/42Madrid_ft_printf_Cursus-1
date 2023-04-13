@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:30 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:48:50 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:05:31 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 void	ft_pchar(int c, int *wr);
 void	ft_pchain(char *chain, int *wr);
-size_t	ft_reverse(unsigned int nb);
 void	ft_pnumber(int n, int *wr);
 void	ft_unsigned(unsigned int nb, int *wr);
 void	ft_hex(unsigned int h, char bs, int *wr);

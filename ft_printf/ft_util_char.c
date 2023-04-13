@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:36 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:41:26 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/04/13 19:12:00 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_pchar(int c, int *wr)
 {
-	wr += write(1, &c, 1);
+	*wr += write(1, &c, 1);
 }
 
 void	ft_pchain(char *chain, int *wr)
@@ -22,10 +22,15 @@ void	ft_pchain(char *chain, int *wr)
 	size_t	a;
 
 	a = 0;
-	while (chain[a] != '\0')
-		a++;
 	if (!chain)
-		wr += write(1, "(null)", 6);
+	{
+		*wr += write(1, "(null)", 6);
+		return ;
+	}
 	else
-		wr += write(1, chain, a);
+	{
+		while (chain[a] != '\0')
+			a++;
+		*wr += write(1, chain, a);
+	}
 }
