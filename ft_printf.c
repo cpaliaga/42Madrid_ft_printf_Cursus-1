@@ -64,7 +64,7 @@ int	ft_printf(const char *phase, ...)
 	va_start (args, phase);
 	while (*phase)
 	{
-		if (*phase == '%')
+		if (*phase == '%' && *(phase + 1))
 		{
 			analysis_one(phase, &args, &wr);
 			analysis_two(phase, &args, &wr);

@@ -22,7 +22,7 @@ DIR_LIB = ./
 NAME = libftprintf.a
 
 OBJ = $(subst .c,.o,$(SRC))
-CFLAGS = -Wall -Wextra -Werror -pedantic -g3
+CFLAGS = -Wall -Wextra -Werror
 
 #### REGLAS ####
 all: $(NAME)

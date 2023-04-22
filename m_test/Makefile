@@ -22,7 +22,8 @@ DIR_LIB = ../
 NAME = ../libftprintf.a
 
 OBJ = $(subst .c,.o,$(SRC))
-CFLAGS = -Wall -Wextra -Werror -pedantic -g3
+CFLAGS = -Wall -Wextra -Werror
+ST = -pedantic -g3
 SA = -fsanitize=address
 
 DIR_TEST_A = ./
@@ -38,10 +39,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@cd ..;$(MAKE)
-	@gcc $(CFLAGS) $(SA) $(TEST_A) -L$(DIR_LIB) -lftprintf -o $(EXEC)
+	@gcc $(CFLAGS) $(TEST_A) -L$(DIR_LIB) -lftprintf -o $(EXEC)
+	@./m_test
 
 $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
-	@gcc $(CFLAGS) $(BUF) -I$(DIR_INC) -c $^ -o $@
+	@gcc $(CFLAGS) -I$(DIR_INC) -c $^ -o $@
 
 nor:
 	@norminette $(SRC)$(INC)

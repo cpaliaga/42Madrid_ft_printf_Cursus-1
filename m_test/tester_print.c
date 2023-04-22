@@ -12,6 +12,12 @@
 
 #include "../ft_printf.h"
 #include <stdio.h>
+/*
+void    leaks(void)
+{
+    system("leaks m_test");
+}
+*/
 
 int	main(void)
 {
@@ -29,6 +35,8 @@ int	main(void)
 	printf("O Puntero %p \n", p);
 	ft_printf("M Puntero cadena  %s \n", p);
 	printf("O Puntero cadena  %s \n", p);
+
+	//atexit(leaks);
 	return (0);
 }
 
