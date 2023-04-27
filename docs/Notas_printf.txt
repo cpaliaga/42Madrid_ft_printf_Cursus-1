@@ -1,0 +1,16 @@
+VARIABLE;	DECLARACION;		PASO POR VALOR (rvalue)
+int a;		funtion (int a){};	funtion (a);
+
+VARIABLE;	DECLARACION;		PASO POR REFERENCIA (lvalue #)
+int a;		funtion (int *a){};	funtion (&a);
+(# se convierte en puntero dentro de la función podremos:
+- modificar su valor dentro de la función x.ej. *a=0;
+- pasarlo a otra función por referencia para que el valor sea devuelto en el parámetro x.ej. function(a);)
+
+PUNTERO;	DECLARACION;		PASO POR VALOR (rvalue)
+int *a;		funtion (int a){};	funtion (*a);
+
+PUNTERO;	DECLARACION;		PASO POR REFERENCIA (lvalue)
+int *a;		funtion (int *a){};	funtion (a);
+
+La función printf tiene un retorno igual que write
