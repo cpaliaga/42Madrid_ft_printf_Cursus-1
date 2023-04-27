@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-void	ft_pchar(int c, int *wr);
+int     ft_pchar(int c);
 void	ft_pchain(char *chain, int *wr);
 void	ft_pnumber(int n, int *wr);
 void	ft_unsigned(unsigned int nb, int *wr);

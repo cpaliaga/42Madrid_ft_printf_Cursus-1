@@ -21,16 +21,24 @@ void    leaks(void)
 
 int	main(void)
 {
-	char *p =  "hola";
+	
+	int M1 = ft_printf("M Caracter %% y %c \n", 'D');
+	printf("M se han impreso %d caracteres \n",M1);
+	int O1 = printf("O Caracter %% y %c \n", 'D');
+	printf("O se han impreso %d caracteres \n",O1);
 
-	int M1 = ft_printf("M '%s', %% caracter %c \n", "soy una cadena", 'D');
-	ft_printf("M se han impreso %d caracteres \n",M1);
-	int O1 = ft_printf("O '%s', %% caracter %c \n", "soy una cadena", 'D');
-	ft_printf("O se han impreso %d caracteres \n",O1);
+
+	int M2 = ft_printf("M '%s' \n", "'Soy una cadena'");
+	printf("M se han impreso %d caracteres \n",M2);
+	int O2 = printf("O '%s' \n", "'Soy una cadena'");
+	printf("O se han impreso %d caracteres \n",O2);
+	
 	ft_printf("M integer %i - unsigned %u \n", 2021, 1234567891);
 	printf("O integer %i - unsigned %u \n", 2021, 1234567891);
 	ft_printf("M hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
 	printf("O hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
+
+	char *p =  "hola";
 	ft_printf("M Puntero %p \n", p);
 	printf("O Puntero %p \n", p);
 	ft_printf("M Puntero cadena  %s \n", p);

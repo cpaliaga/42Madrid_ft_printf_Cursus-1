@@ -16,12 +16,12 @@ void	analysis_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
-		ft_pchar(va_arg(*args, int), wr);
+		*wr += ft_pchar(va_arg(*args, int));
 		phase++;
 	}
 	else if (*(phase + 1) == '%')
 	{
-		ft_pchar('%', wr);
+		*wr += ft_pchar('%');
 		phase++;
 	}
 	else if (*(phase + 1) == 's')
@@ -60,9 +60,11 @@ int	ft_printf(const char *phase, ...)
 	int		wr;
 	va_list	args;
 
+	if (!phase)
+		return(0);
 	wr = 0;
 	va_start (args, phase);
-	while (*phase)
+	while (*phase && *phase!='\0')
 	{
 		if (*phase == '%' && *(phase + 1))
 		{
@@ -72,10 +74,10 @@ int	ft_printf(const char *phase, ...)
 		}
 		else
 		{
-			wr += write(1, phase, 1);
+			wr += ft_pchar(*phase);
 		}
 		phase++;
-	}
+	} 
 	va_end(args);
 	return (wr);
 }

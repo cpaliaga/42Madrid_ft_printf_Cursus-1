@@ -12,9 +12,16 @@
 
 #include "ft_printf.h"
 
-void	ft_pchar(int c, int *wr)
+int ft_pchar(int c)
 {
-	*wr += write(1, &c, 1);
+	int new_wr;
+
+	new_wr = 0;
+	if (c != '\0')
+		new_wr = write(1, &c, 1);
+	if (new_wr == -1)
+		return (-1);
+	return (new_wr);
 }
 
 void	ft_pchain(char *chain, int *wr)

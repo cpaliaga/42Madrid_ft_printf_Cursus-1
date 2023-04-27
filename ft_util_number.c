@@ -29,7 +29,7 @@ void	ft_pnumber(int n, int *wr)
 		{
 			if (n > 9)
 				ft_pnumber(n / 10, wr);
-			ft_pchar(n % 10 + '0', wr);
+			*wr += ft_pchar(n % 10 + '0');
 		}
 	}
 }
@@ -38,7 +38,7 @@ void	ft_unsigned(unsigned int n, int *wr)
 {
 	if (n > 9)
 		ft_pnumber(n / 10, wr);
-	ft_pchar(n % 10 + '0', wr);
+	*wr += ft_pchar(n % 10 + '0');
 }
 
 void	ft_hex(unsigned int h, char bs, int *wr)
