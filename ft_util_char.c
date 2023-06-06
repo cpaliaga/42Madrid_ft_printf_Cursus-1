@@ -6,22 +6,21 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:36 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/04/13 19:12:00 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:07:07 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_pchar(int c)
+int	ft_pchar(int c, int *wr)
 {
-	int new_wr;
+	int	wr_int;
 
-	new_wr = 0;
-	if (c != '\0')
-		new_wr = write(1, &c, 1);
-	if (new_wr == -1)
-		return (-1);
-	return (new_wr);
+	wr_int = *wr;
+	wr_int += write(1, &c, 1);
+	if (wr_int == -1)
+		return (0);
+	return (wr_int);
 }
 
 void	ft_pchain(char *chain, int *wr)

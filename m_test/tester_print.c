@@ -6,7 +6,7 @@
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:34:52 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:25:32 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,24 @@ void    leaks(void)
 
 int	main(void)
 {
-	
-	int M1 = ft_printf("M Caracter %% y %c \n", 'D');
-	printf("M se han impreso %d caracteres \n",M1);
-	int O1 = printf("O Caracter %% y %c \n", 'D');
-	printf("O se han impreso %d caracteres \n",O1);
+	char *p =  "hola";
 
-
-	int M2 = ft_printf("M '%s' \n", "'Soy una cadena'");
-	printf("M se han impreso %d caracteres \n",M2);
-	int O2 = printf("O '%s' \n", "'Soy una cadena'");
-	printf("O se han impreso %d caracteres \n",O2);
-	
+	int M1 = ft_printf("M '%s', %% caracter %c \n", "soy una cadena", 'D');
+	ft_printf("M se han impreso %d caracteres \n",M1);
+	int O1 = ft_printf("O '%s', %% caracter %c \n", "soy una cadena", 'D');
+	ft_printf("O se han impreso %d caracteres \n",O1);
 	ft_printf("M integer %i - unsigned %u \n", 2021, 1234567891);
 	printf("O integer %i - unsigned %u \n", 2021, 1234567891);
 	ft_printf("M hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
 	printf("O hexadecimal %x - HEXADECIMAL %X \n", 32, 64);
-
-	char *p =  "hola";
 	ft_printf("M Puntero %p \n", p);
 	printf("O Puntero %p \n", p);
 	ft_printf("M Puntero cadena  %s \n", p);
 	printf("O Puntero cadena  %s \n", p);
+	ft_printf("");
+	printf("");
+	//ft_printf(34);
+	//printf(34);
 
 	//atexit(leaks);
 	return (0);

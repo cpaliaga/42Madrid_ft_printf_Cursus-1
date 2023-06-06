@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:55:24 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:01:19 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	analysis_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
-		*wr += ft_pchar(va_arg(*args, int));
+		*wr += ft_pchar(va_arg(*args, int), wr);
 		phase++;
 	}
 	else if (*(phase + 1) == '%')
 	{
-		*wr += ft_pchar('%');
+		*wr += ft_pchar('%', wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 's')
@@ -60,11 +60,9 @@ int	ft_printf(const char *phase, ...)
 	int		wr;
 	va_list	args;
 
-	if (!phase)
-		return(0);
 	wr = 0;
 	va_start (args, phase);
-	while (*phase && *phase!='\0')
+	while (*phase)
 	{
 		if (*phase == '%' && *(phase + 1))
 		{
@@ -74,10 +72,12 @@ int	ft_printf(const char *phase, ...)
 		}
 		else
 		{
-			wr += ft_pchar(*phase);
+			wr += write(1, phase, 1);
+			if (wr == -1)
+				return (0);
 		}
 		phase++;
-	} 
+	}
 	va_end(args);
 	return (wr);
 }

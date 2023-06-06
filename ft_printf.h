@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:30 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/04/13 19:05:31 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:16:06 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-int     ft_pchar(int c);
+int		ft_pchar(int c, int *wr);
 void	ft_pchain(char *chain, int *wr);
 void	ft_pnumber(int n, int *wr);
 void	ft_unsigned(unsigned int nb, int *wr);
