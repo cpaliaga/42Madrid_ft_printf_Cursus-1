@@ -6,7 +6,7 @@
 #    By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 17:58:52 by caliaga-          #+#    #+#              #
-#    Updated: 2023/03/23 19:53:26 by caliaga-         ###   ########.fr        #
+#    Updated: 2023/06/14 17:36:49 by caliaga-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ INC_H = ft_printf.h
 INC = $(addprefix $(DIR_INC), $(INC_H))
 
 DIR_LIB = ../
-NAME = ../libftprintf.a
+LI = ftprintf
+LIB = $(addprefix lib, $(LI))
+NAME = $(addsuffix .a,$(addprefix $(DIR_LIB), $(LIB)))
 
 OBJ = $(subst .c,.o,$(SRC))
 CFLAGS = -Wall -Wextra -Werror
@@ -37,25 +39,21 @@ EXEC = $(addprefix $(DIR_EXE), $(FILE_EXE))
 #### REGLAS ####
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@cd ..;$(MAKE)
-	@gcc $(CFLAGS) $(TEST_A) -L$(DIR_LIB) -lftprintf -o $(EXEC)
+$(NAME): $(TEST_A)
+	@$(MAKE) -C $(DIR_LIB) 	
+	@gcc $(CFLAGS) $(TEST_A) -L$(DIR_LIB) -l$(LI) -o $(EXEC)
 	@./m_test
 
-$(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
-	@gcc $(CFLAGS) -I$(DIR_INC) -c $^ -o $@
-
 nor:
-	@norminette $(SRC)$(INC)
+	@norminette $(SRC)
+	@norminette $(INC)
 
 clean:
-	@rm -fr $(SRC:.c=.o)
-	@echo "OBJECTS deleted"
+	@cd ..;$(MAKE) clean
 
-fclean: clean
-	@rm -fr $(NAME)
-	@echo "$(NAME) deleted"
+fclean:
+	@$(MAKE) fclean -C $(DIR_LIB)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fclean re

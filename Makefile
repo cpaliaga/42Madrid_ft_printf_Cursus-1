@@ -6,7 +6,7 @@
 #    By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 17:58:52 by caliaga-          #+#    #+#              #
-#    Updated: 2023/03/23 19:53:26 by caliaga-         ###   ########.fr        #
+#    Updated: 2023/06/14 17:44:46 by caliaga-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,12 @@ FILES_INC = ft_printf.h
 INC = $(addprefix $(DIR_INC), $(FILES_INC))
 
 DIR_LIB = ./
-NAME = libftprintf.a
+LI = ftprintf
+LIB = $(addprefix lib, $(LI))
+NAME = $(addsuffix .a,$(addprefix $(DIR_LIB), $(LIB)))
 
 OBJ = $(subst .c,.o,$(SRC))
+
 CFLAGS = -Wall -Wextra -Werror
 
 #### REGLAS ####
