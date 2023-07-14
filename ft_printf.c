@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/06/06 12:56:38 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:13:37 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	analysis_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
-		*wr += ft_pchar(va_arg(*args, int), wr);
+		ft_pchar(va_arg(*args, int), wr);
 		phase++;
 	}
 	else if (*(phase + 1) == '%')
 	{
-		*wr += ft_pchar('%', wr);
+		ft_pchar('%', wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 's')

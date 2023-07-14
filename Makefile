@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 17:58:52 by caliaga-          #+#    #+#              #
-#    Updated: 2023/06/14 17:44:46 by caliaga-         ###   ########.fr        #
+#    Updated: 2023/07/14 20:30:45 by caliaga-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,7 @@ DIR_INC = ./
 FILES_INC = ft_printf.h
 INC = $(addprefix $(DIR_INC), $(FILES_INC))
 
-DIR_LIB = ./
-LI = ftprintf
-LIB = $(addprefix lib, $(LI))
-NAME = $(addsuffix .a,$(addprefix $(DIR_LIB), $(LIB)))
+NAME = libftprintf.a
 
 OBJ = $(subst .c,.o,$(SRC))
 
@@ -36,7 +33,7 @@ $(NAME): $(OBJ)
 	@echo "library $(NAME) created & indexed"
 	
 $(filter-out %.o, $(SRC)): $(filter-out %.c, $(SRC))
-	@gcc $(CFLAGS) $(BUF) -I$(DIR_INC) -c $^ -o $@
+	@gcc $(CFLAGS) -I$(DIR_INC) -c $^ -o $@
 
 clean:
 	@rm -fr $(SRC:.c=.o)
