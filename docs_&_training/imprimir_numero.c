@@ -1,6 +1,8 @@
 
 #include <unistd.h>
 #include <stdio.h>
+#include <limits.h>
+
 
 int ft_pchar(int c);
 int ft_pnumber(int n);
@@ -115,6 +117,19 @@ int main ()
     
     int org4 = printf("%i", -100);
     printf("\t%i\n", org4);
+
+    printf("BATERIA DE PRUEBAS\n");
+    int clon5 = ft_pnumber(INT_MIN);
+    printf("\t%i\n", clon5);
+    
+    int org5 = printf("%i", INT_MIN);
+    printf("\t%i\n", org5);
+
+    int clon6 = ft_pnumber(INT_MAX);
+    printf("\t%i\n", clon6);
+    
+    int org6 = printf("%i", INT_MAX);
+    printf("\t%i\n", org6);
 
 return 0;
 }
