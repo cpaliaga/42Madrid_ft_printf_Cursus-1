@@ -1,34 +1,35 @@
 
 #include <unistd.h>
 #include <stdio.h>
+#include <limits.h>
 
 int	ft_pchain(char *chain);
+int ft_pchar(int c);
+
+int ft_pchar(int c)
+{
+	int wr;
+
+    wr = write(1, &c, 1);
+	if (wr == -1)
+		return (-1);
+	return (wr);
+}
 
 int	ft_pchain(char *chain)
 {
     int     wr;
-	size_t	a;
+	size_t	len;
 
 	wr = 0;
-    a = 0;
+    len = 0;
 	if (!chain)
-	{
-		wr += write(1, "(null)", 6);
-		return (0);
-	}
+		return (write(1, "(null)", 6));
     else{
-        while (chain[a] != '\0')
-        {
-            if (chain[a] == '\t')
-                wr += 1;
-            wr += write(1, &chain[a], sizeof(chain[a]));
-            a++;
-        }
-		//wr += write(1, chain, a);
+        while (chain[len] != '\0')
+            len++;
+        return (write(1, chain, len));
     }
-   
-    
-    return (wr);
 }
 
 int main (void)
@@ -41,9 +42,9 @@ int main (void)
     printf("\n");
 
     printf("Prueba de Caracteres ASCII EXTENDIDO \n");
-    int cad1 = ft_pchain(" hola ñoño");
+    int cad1 = ft_pchain("ñoño");
     printf("\t%i", cad1);
-    int ori1 = printf("%s", " hola ñoño");
+    int ori1 = printf("%s", "ñoño");
     printf("\t%i", ori1);
     printf("\n");
 
@@ -54,15 +55,15 @@ int main (void)
     printf("\n");
 
     printf("Prueba de Caracteres ASCII NO IMPRIMIBLES \n");
-    int cad3 = ft_pchain(" %hola lolo   ñ");
+    int cad3 = ft_pchain("hola   ñ");
     printf("\t%i", cad3);
-    int ori3 = printf("%s", " %hola lolo    ñ");
+    int ori3 = printf("%s", "hola    ñ");
     printf("\t%i", ori3);
     printf("\n");
 
-    int cad4 = ft_pchain(" %hola lolo\0%%");
+    int cad4 = ft_pchain("\thola \nlolo\0%%");
     printf("\t%i", cad4);
-    int ori4 = printf("%s", " %hola lolo\0%%");
+    int ori4 = printf("%s", "\thola \nlolo\0%%");
     printf("\t%i", ori4);
     printf("\n");
 
@@ -78,6 +79,27 @@ int main (void)
     printf("\t%i", cad6);
     //int ori6 = printf("%s", 0);
     //printf("\t%i", ori6);
+    printf("\n");
+
+    int wd1 = ft_pchar(42+'0');
+    printf("\t%i", wd1);
+    printf(" -» ");
+    int or1 = printf("%c", 42+'0');
+    printf("\t%i", or1);
+    printf("\n");
+
+    int wd2 = ft_pchar(' ');
+    printf("\t%i", wd2);
+    printf(" -» ");
+    int or2 = printf("%c", ' ');
+    printf("\t%i", or2);
+    printf("\n");
+
+    int wd3 = ft_pchar( 42+'\0');
+    printf("\t%i", wd3);
+    printf(" -» ");
+    int or3 = printf("%c", 42+'\0');
+    printf("\t%i", or3);
     printf("\n");
 
     return (0);

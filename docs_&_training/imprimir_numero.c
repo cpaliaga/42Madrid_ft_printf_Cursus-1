@@ -54,9 +54,9 @@ int ft_pnumber(int n)
 
     wr = 0;
     if (n == -2147483648)
-		write(1, "-2147483648", 11);
+		return (write(1, "-2147483648", 11));
 	else if (n == 0)
-		write(1, "0", 1);
+		return (write(1, "0", 1));
 	else
 	{
 		if (n < 0)
@@ -76,6 +76,26 @@ int ft_pnumber(int n)
 }
 
 /* «int ft_counter_int(int n)» tiene {23 lineas} internas */
+
+int	ft_unsigned(unsigned int n)
+{
+    int wr;
+    unsigned int nn;
+
+    wr = 0;
+    nn = n;
+    while (nn > 9)
+    {
+        wr += 1;
+        nn = nn / 10;
+    }
+    wr += 1;
+    if (n > 9)
+        ft_unsigned(n / 10);
+    ft_pchar(n % 10 + '0');
+	return (wr);
+}
+
 
 /**
  * Se ha creado una nueva funcion «int ft_counter_int(int n)» para dar 
@@ -131,5 +151,11 @@ int main ()
     int org6 = printf("%i", INT_MAX);
     printf("\t%i\n", org6);
 
+    printf("PRUEBAS UNSIGNED\n");
+    int clon7 = ft_unsigned(UINT_MAX);
+    printf("\t%i\n", clon7);
+    
+    int org7 = printf("%u", UINT_MAX);
+    printf("\t%i\n", org7);
 return 0;
 }

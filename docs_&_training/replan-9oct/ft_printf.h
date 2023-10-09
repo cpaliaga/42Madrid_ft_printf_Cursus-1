@@ -18,11 +18,10 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-int ft_pchain(char *chain);
-int ft_pchar(int c);
-int ft_counter_int(int n);
-int ft_pnumber(int n);
-int	ft_unsigned(unsigned int n)
+void    ft_pchar(int c, int *wr);
+void	ft_pchain(char *chain, int *wr);
+void	ft_pnumber(int n, int *wr);
+void	ft_unsigned(unsigned int nb, int *wr);
 void	ft_hex(unsigned int h, char bs, int *wr);
 void	ft_point(unsigned long long p, int *wr);
 void	analysis_one(const char *phase, va_list *args, int *wr);

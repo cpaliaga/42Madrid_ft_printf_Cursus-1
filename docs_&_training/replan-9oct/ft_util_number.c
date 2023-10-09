@@ -12,50 +12,33 @@
 
 #include "ft_printf.h"
 
-int ft_pnumber(int n)
+void	ft_pnumber(int n, int *wr)
 {
-    int wr;
-
-    wr = 0;
-    if (n == -2147483648)
-		return (write(1, "-2147483648", 11));
+	if (n == -2147483648)
+		*wr += write(1, "-2147483648", 11);
 	else if (n == 0)
-		return (write(1, "0", 1));
+		*wr += write(1, "0", 1);
 	else
 	{
 		if (n < 0)
 		{
-			wr += write(1, "-", 1);
-			ft_pnumber(n = n * -1);
+			*wr += write(1, "-", 1);
+			ft_pnumber(n = n * -1, wr);
 		}
-        else
-        {
-            if (n > 9)
-                ft_pnumber(n / 10);
-            ft_pchar(n % 10 + '0');
-        }
+		else
+		{
+			if (n > 9)
+				ft_pnumber(n / 10, wr);
+			ft_pchar(n % 10 + '0', wr);
+		}
 	}
-    wr += ft_counter_int(n);
-    return (wr);
 }
 
-int	ft_unsigned(unsigned int n)
+void	ft_unsigned(unsigned int n, int *wr)
 {
-    int wr;
-    unsigned int nn;
-
-    wr = 0;
-    nn = n;
-    while (nn > 9)
-    {
-        wr += 1;
-        nn = nn / 10;
-    }
-    wr += 1;
-    if (n > 9)
-        ft_unsigned(n / 10);
-    ft_pchar(n % 10 + '0');
-	return (wr);
+	if (n > 9)
+		ft_pnumber(n / 10, wr);
+	ft_pchar(n % 10 + '0', wr);
 }
 
 void	ft_hex(unsigned int h, char bs, int *wr)

@@ -16,17 +16,17 @@ void	analysis_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
-		*wr += ft_pchar(va_arg(*args, int), wr);
+		ft_pchar(va_arg(*args, int), wr);
 		phase++;
 	}
 	else if (*(phase + 1) == '%')
 	{
-		*wr += ft_pchar('%', wr);
+		ft_pchar('%', wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 's')
 	{
-		*wr += ft_pchain(va_arg (*args, char *), wr);
+		ft_pchain(va_arg (*args, char *), wr);
 		phase++;
 	}
 }
@@ -35,12 +35,12 @@ void	analysis_two(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'd' || *(phase + 1) == 'i')
 	{
-		*wr += ft_pnumber(va_arg(*args, int));
+		ft_pnumber(va_arg(*args, int), wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 'u')
 	{
-		*wr += ft_unsigned(va_arg(*args, unsigned int));
+		ft_unsigned(va_arg(*args, unsigned int), wr);
 		phase++;
 	}
 	else if (*(phase + 1) == 'x' || *(phase + 1) == 'X')

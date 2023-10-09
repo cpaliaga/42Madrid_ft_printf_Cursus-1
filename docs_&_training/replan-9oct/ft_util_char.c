@@ -12,55 +12,31 @@
 
 #include "ft_printf.h"
 
-int	ft_pchar(int c)
+void	ft_pchar(int c, int *wr)
 {
-	int wr;
+	int	wr_int;
 
-    wr = write(1, &c, 1);
-	if (wr == -1)
-		return (-1);
-	return (wr);
+	wr_int = 0;
+	wr_int += write(1, &c, 1);
+	if (wr_int == -1)
+		return;
+	*wr = wr_int;
 }
 
-int	ft_pchain(char *chain)
+void	ft_pchain(char *chain, int *wr)
 {
-    int     wr;
-	size_t	len;
+	size_t	a;
 
-	wr = 0;
-    len = 0;
+	a = 0;
 	if (!chain)
-		return (write(1, "(null)", 6));
-    else{
-        while (chain[len] != '\0')
-            len++;
-        return (write(1, chain, len));
-    }
-}
-
-int ft_counter_int(int n)
-{
-    int wr;
-
-    wr = 0;
-    if (n == -2147483648)
-		wr += 11;
-	else if (n == 0)
-		wr += 1;
+	{
+		*wr += write(1, "(null)", 6);
+		return ;
+	}
 	else
 	{
-		if (n < 0)
-			wr += 1;
-        else
-        {
-            while (n > 9)
-            {
-                wr += 1;
-                n = n / 10;
-            }
-            wr += 1;
-        }
+		while (chain[a] != '\0')
+			a++;
+		*wr += write(1, chain, a);
 	}
-    return (wr);
 }
-
