@@ -1,0 +1,265 @@
+#include "pf_utils.h"
+
+void simple_test()
+{
+	TEST("no format", {
+		test_printf_noarg("");
+		test_printf_noarg("\x01\x02\a\v\b\f\r\n");
+	})
+
+	TEST("% format", {
+		test_printf_noarg("%%");
+		test_printf_noarg(" %%");
+		test_printf_noarg("%%c");
+		test_printf_noarg("%%%%%%");
+		test_printf("%%%c", 'x');
+	})
+}
+
+void test_c()
+{
+	TEST("c format", {
+		test_printf("%c", 'x');
+		test_printf(" %c", 'x');
+		test_printf("%c ", 'x');
+		test_printf("%c%c%c", 'a', '\t', 'b');
+		test_printf("%cc%cc%c", 'a', '\t', 'b');
+		test_printf("%cs%cs%c", 'c', 'b', 'a');
+	})
+}
+
+void test_s()
+{
+	TEST("s format", {
+		test_printf("%s", "");
+		test_printf("%s", (char *)NULL);
+		test_printf("%s", "some string with %s hehe");
+		test_printf(" %s", "can it handle \t and \n?");
+		test_printf("%sx", "{} al$#@@@^&$$^#^@@^$*((&");
+		test_printf("%s%s%s", "And ", "some", "joined");
+		test_printf("%ss%ss%ss", "And ", "some other", "joined");
+	})
+}
+
+void test_p()
+{
+	TEST("p format", {
+		test_printf("%p", "");
+		test_printf("%p", NULL);
+		test_printf("%p", (void *)-14523);
+		test_printf("0x%p-", (void *)ULONG_MAX);
+		test_printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void *)INT_MAX);
+	})
+}
+
+void test_d()
+{
+	TEST("d format", {
+		test_printf("%d", 0);
+		test_printf("%d", -10);
+		test_printf("%d", -200000);
+		test_printf("%d", -6000023);
+		test_printf("%d", 10);
+		test_printf("%d", 10000);
+		test_printf("%d", 100023);
+		test_printf("%d", INT_MAX);
+		test_printf("%d", INT_MIN);
+		test_printf("dgs%dxx", 10);
+		test_printf("%d%dd%d", 1, 2, -3);
+	})
+}
+
+void test_i()
+{
+	TEST("i format", {
+		test_printf("%i", 0);
+		test_printf("%i", -10);
+		test_printf("%i", -200000);
+		test_printf("%i", -6000023);
+		test_printf("%i", 10);
+		test_printf("%i", 10000);
+		test_printf("%i", 100023);
+		test_printf("%i", INT_MAX);
+		test_printf("%i", INT_MIN);
+		test_printf("dgs%ixx", 10);
+		test_printf("%i%ii%i", 1, 2, -3);
+	})
+}
+
+void test_u()
+{
+	TEST("u format", {
+		test_printf("%u", 0);
+		test_printf("%u", -10);
+		test_printf("%u", -200000);
+		test_printf("%u", -6000023);
+		test_printf("%u", 10);
+		test_printf("%u", 10000);
+		test_printf("%u", 100023);
+		test_printf("%u", INT_MAX);
+		test_printf("%u", INT_MIN);
+		test_printf("%u", UINT_MAX);
+		test_printf("dgs%uxx", 10);
+		test_printf("%u%uu%u", 1, 2, -3);
+	})
+}
+
+void test_x()
+{
+	TEST("x format", {
+		test_printf("%x", 0);
+		test_printf("%x", -10);
+		test_printf("%x", -200000);
+		test_printf("%x", -6000023);
+		test_printf("%x", 10);
+		test_printf("%x", 10000);
+		test_printf("%x", 100023);
+		test_printf("%x", 0xabcdef);
+		test_printf("%x", 0x7fedcba1);
+		test_printf("%x", INT_MAX);
+		test_printf("%x", INT_MIN);
+		test_printf("%x", UINT_MAX);
+		test_printf("dgs%xxx", 10);
+		test_printf("%x%xx%x", 1, 2, -3);
+	})
+}
+
+void test_X()
+{
+	TEST("X format", {
+		test_printf("%X", 0);
+		test_printf("%X", -10);
+		test_printf("%X", -200000);
+		test_printf("%X", -6000023);
+		test_printf("%X", 10);
+		test_printf("%X", 10000);
+		test_printf("%X", 100023);
+		test_printf("%X", 0xabcdef);
+		test_printf("%X", 0x7fedcba1);
+		test_printf("%X", INT_MAX);
+		test_printf("%X", INT_MIN);
+		test_printf("%X", UINT_MAX);
+		test_printf("dgs%Xxx", 10);
+		test_printf("%X%Xx%X", 1, 2, -3);
+	})
+}
+
+int main(int argn, char **argv)
+{
+	printf(YEL "Mandatory:" NC "\n");
+	pf_setup_framework(argn, argv);
+
+	simple_test();
+	test_c();
+	test_s();
+	test_p();
+	test_d();
+	test_i();
+	test_u();
+	test_x();
+	test_X();
+
+	TEST("random", {
+		// generated in python
+				/* 2 */ test_printf_silent("n- \faDlLUX%dK|%d%s!=3k4%sFK<(%xG,L.Q#%%U=9)", 732522269, -95526170, "]{8_cEV8 quG50|`K&|J;+{=r<{;CnL$4+k1GF\\P\\xI&56", "Ft@*$kwhKW.P60lo^*.Jv\n~d]e/PF40\\{{/K]@[(&~OLO!h\f8LgP?d{n8UfW0'1JAc6rqW2,Cz", -1737114450);
+		/* 3 */ test_printf_silent("W\"z9\vkyl%p_\tB;yl}x%uqGz>%uq]r<0:?X%ch1", (void *)5188467865672811509, -155827668, 1814891, -381512679);
+		/* 4 */ test_printf_silent("gh,\ndA\\P?%%CI7H\rZT%d%%^n C%sQl@5nb KM\r", -1088081008, "-c|0a.2/CP'\v#\vQ");
+		/* 5 */ test_printf_silent("+X\fJHK%XYIm|\"%pjqdA|%%;\"Z$ g", 1762926636, (void *)-2653311330444189817);
+		/* 6 */ test_printf_silent("a%cfp\t@c%d. bgfhc%sRT", 1465113981, 1920049582, "MY hXR%+oyyON=l~d\tz\"\rZ:n~-!=>f`3-)w:#zQxv!.B\fu|Ix?p_HS's;F [4a.\v0T{");
+		/* 7 */ test_printf_silent("%xCN-:l:j%icx?mA|_Ts%X\fw]dk\rej?%peufIC`%s%s($", -380757965, 1583073228, -64734087, (void *)5918541979438357805, "}/.m6siuK]Chs[/8H1*iaJC\\Rr*", "|-B/i3@@gLR{hwC=;2E,u\\#{$|,8ZVa/j");
+		/* 8 */ test_printf_silent("$T:%u4R_Vne%d}u&GS):;?A%d%%[69uD%dt4", -800356823, 1112756978, -351373504, 1595595142);
+		/* 9 */ test_printf_silent("M%X6_%il~r*%cu'\rw;>\f|;=", 1159552628, 618052830, 1969598486);
+		/* 10 */ test_printf_silent("mR@m%i`^<@X|%sZOtZLVlg0Q%c'v0I,O>Ruk%X\\CTdd", 447233248, "216oN/#=LV\r\t@JM{}s+*\n'l/q@+\rPy}w[.S-haDo.]A>@v@}9\fB?f^6^hrH&suOvLTZs;pY2Q0yp7?aK&R]HXXjG`e)G\fF&%3LN", -521019343, 1791711921);
+		/* 11 */ test_printf_silent("9=%cW$oCw#MZ%pS9%dSs%xrKX`3.y%%", -1953527836, (void *)2831057480103096737, -1987967159, 513334516);
+		/* 12 */ test_printf_silent("y|=O/L%c>#4l\ve%u\voWU%%YK-2%X}}rB h<9hG%dWbT2%c#&>]%iTm%%2MRR3Si}%pQAuCy$ %%Fz\\g", 1503953217, -1475507218, 2117937640, 1720253562, 897654660, 233496095, (void *)-5459735647026608146);
+		/* 13 */ test_printf_silent("d#^%u/PBs\n}%u t<r?Z%s<\nk{R%d{QbTc$[+\rQ%ckjb", -1672286419, -213350689, "3V:;oQ'\r\t)0_y>}VL4+%P@=|@EP*v2T:o(mj4", 1510529480, -1668758331);
+		/* 14 */ test_printf_silent("3Os%X?\"OjIQX@Jh%dq%p[;%xB\\y\fP%iEl[", -965065490, 2039313458, (void *)-3548978820084870814, 314936307, 430664216);
+		/* 15 */ test_printf_silent("<M[t6%p%d46%d,+p\tVH%pa%da\nK)g}}8}7%uZa\f\t:+f<%s", (void *)-5722236181300005438, 975885212, -612218053, (void *)-5164711467776651303, 2130857720, 114957693, "AH>BX}Gk'BaDa#`~=^E/A'|xX_*8pW${?wJy[f8\f\f;4EWYc{^S\"tU|+'b`QS+V-.");
+		/* 16 */ test_printf_silent("mN-p14l%pg*:-78qU%c2&,sU}3rAK%s,\v]I%ufWfL=@JHF%c8B%pi+k", (void *)-928219313710070414, -468604083, "Z\vu /\v6sDL^1l*?ACPFJ", -113941902, -696899615, (void *)8025475408561098065);
+		/* 17 */ test_printf_silent("Lf+`zL:0%c$Ol+AV%usL>2a?V'A%x(\\1)i>qzv", 1255331441, 1179880086, -820670553);
+		/* 18 */ test_printf_silent("Y.6'KO{G%%Kd^j%uhs%X~%pZ!\rY<p%u%iJw/%cr1it!]x0c%pC4j<%iE\"sB%u", 2103018904, -296138237, (void *)6334357345533770207, -122273819, -943871822, 1693543245, (void *)-5689411804643252258, 1489178541, -1289498859);
+		/* 19 */ test_printf_silent("Fz5pbK%u{pUN#!`%uj%c#b\"%ueYUdZ%s%xS~)r,(c i", 1193252536, -830196921, 1150624660, -2066390052, "\"b?&Ydaxl?<F8q3zi3\n7WG{\nj]eN.y?G(tfJ7pnF\\2D\\-]gR", 47442549);
+		/* 20 */ test_printf_silent("01 &h$\tow+%d19uXn'%d5:VD_L%s2Y%X86]uU~%X,}@d9^\f4%x7Gi9X|#%uD%d8w4}&[7c9\"%cX^]G", 1816434260, 853625310, "\nUz{P9b6FA$teNAQ3P8w&\ni1H[X`eUJPpgim8*\\9A\n@m!>0!G\r\"Com|.h<g'z\\", -1748660845, -628751610, 1827145674, 2094549041, -2095303985, 1864603936);
+		/* 21 */ test_printf_silent("1s%%MFC,/q%c>\vzr%dv\rmW3gz%X'>p%%Y:3\f%dKB|PB%u", 769238115, -1773229418, -1733006014, 554937001, -734112831);
+		/* 22 */ test_printf_silent("4/\f%%\fk Z)IL%p-%pG[ 0)o\r%i~P)=%sUp%X]oCS>c)wRa%p", (void *)-8116370505976714541, (void *)-5217203743879625830, 2122186890, "msj%F|[YK<m:3aXCgGN)N[sTb}I\fo`f\\YT*B4R5@B!qT+xlTQi&Zx/UO` y\v]!4fL:eXE5|]FTu", 884348677, (void *)1475343216858088568);
+		/* 23 */ test_printf_silent("|1F{ijk%pt!^i%u_\r$R%%\r?^$TK~YF%p\nI.JzD%dO'RrX\"B%cTD%s( o%u3", (void *)-6673224734022293747, 1493530040, (void *)920469785974575372, 1738075970, -1267705566, "Uh\t5%);[ib5AztR/;,g)>qOW+&PKA#<e \n% 9p5-ty-Vrf*WL_;q", -1433253729);
+		/* 24 */ test_printf_silent("J\v)y%cjk/[ow-<%x%xg N%%1x\fC:F(%xDR\nd(gGsda%pbOx.P%c<\vAM\f3%pjA#c.3=%cWPZ", 186139276, -834933002, -960239576, 608589003, (void *)-8830816256725843112, -190874269, (void *)7402763804557200806, 494258270);
+		/* 25 */ test_printf_silent("2_M 8%%vn!%X", -1858124833);
+		/* 26 */ test_printf_silent("HyjEDBenJ*%c8h40^%c Su/\fo#%xL4##U%cCp64Om?\n$|%p%X?0\\_D^(\r0%X8m5U#M4K%xQ6\\eF%xiAUb[", -2131838284, -1540440887, 1536977009, 199203741, (void *)-6536521307609863498, -1552382706, 1687562094, -1038919740, -861843579);
+		/* 27 */ test_printf_silent("/x8%cQ7Rx%dF", 470509985, 841360180);
+		/* 28 */ test_printf_silent("C}:Gkp5\n%i%p)[g-%s&\n`/%pW\t\td0x\"G{%s\t0\nc$L]#`%s:\fks%pIAp", -786971788, (void *)9027162201275673269, "i@kboSHu\f4a(Kwy\f;J30%l\"%P\fi] ,WC\n%th5mH\\8txw\\=tLZ=F!wsd~K>sq/dJ<dS\t]_Mb1[nF3\tPcT4w0M70wL", (void *)753848557336923386, "\\#dp fg1(&@rxr9P<AulgNeZ'7gdgvh<\\M`Rf|g", "Gd\\K,1\f~8K<+)5@S-u}G~z,bG\vZ6\t\n/:H\r5FKjgu.$6OPU+6H_>\"\vc5<?2O\fM)}bQ7HE5", (void *)4840944198358274297);
+		/* 29 */ test_printf_silent(",\fR;2N%s.&%iu`#%p^d]z%iWp :6X^@,\n%cbl?", "An\fe6sW8t^\"LGu|$N%QyDAPi^RiN+YWv/Jr,6c\f9{`{", 1457628076, (void *)-3159197970607986072, -656537280, -314560527);
+		/* 30 */ test_printf_silent(" lQ%chK^cMT~[rT%d%d\nhA2U2X.", 44157314, -1209606343, 1184726242);
+		/* 31 */ test_printf_silent("N{4B8%s.%s\n1/SmUOnO%Xm ho}x|w%uY[MM %x8Y!=GM\feVm%p\"}%pP\n\n82", "g&Juo\\Vbo'Q\rpm?R/|:U\nEZJPy\tl[FG~5yhvqAW;uos1A&jW=O5vSsB\f, f%<Xx\"5\vr^gRcy=Y5.[Q~}D6K/;_\n!I-\v", "D(%v\f2jv\\anJviNM|,.n1so\"B6FJ4\vZ8PL4{05{ D~*\v*rd;K|W}f:O#:V@#{`h,9KhjKIE:ooQI\"g\".n2G", 1974700481, 1125230181, -1412207696, (void *)8869819765038273113, (void *)8432794710101304952);
+		/* 32 */ test_printf_silent("S5J~rLC\rzP%xmNW%%kSs)l%p^[Tq @\"m!w%u%x%soks;9''%s%c$x'z V", -483932401, (void *)-4826414919360297276, 1315898062, -2001693146, "|T_/Vc,:)aB/WV24", "6W\tpFa]_ 0I,\"4eGS0%T[2+\\O\nq\r/CXOG{ZdoI\np\rrkb.7}XSi7mqgryRF\n(gVDDF7G\"?&2n`\\:J=Bco+-DDC3oFOI9P", -383001883);
+		/* 33 */ test_printf_silent("%c1W&_n3%u&8%%%ppEfCI\f%x}", -867627516, -2004555250, (void *)-1509508332058800520, 1590576316);
+		/* 34 */ test_printf_silent("!K<#5+Z)g%c\v_\"#'%x38j=kve%p\tfTwo}M%pWCMPj8lt%cA$3Y{|f3", -1054354709, -1102448634, (void *)8411036219756149774, (void *)-7314976442939624563, 1399726743);
+		/* 35 */ test_printf_silent("W%d%pZ\rX$eCc%pi;{11HG2&f%u\\9%X3=<X>i%Xi)KV%plQWI5<;U%i", -970583599, (void *)-4675579930245549431, (void *)-2866530556395259462, -844725555, 917031633, 1555287598, (void *)667653094179857835, -1681140456);
+		/* 36 */ test_printf_silent("|eq`3]-%pi m@'[<j%x,'|nO\f\r%XaU0qusdf\\%xRI Mhx:wy%c74 lN53,%c%ddg8V.K>5J<%p%urjS<J2)W%%^820", (void *)-6114578062532860373, 1635299606, 180348799, 1488584320, -554400659, -1072808184, -1548308955, (void *)-6169580584225846853, 922702614);
+		/* 37 */ test_printf_silent("'2\n6L2\\%c2Bn'(H1'\tv%ck!%d\"q>emDr%%e8%x<piR\f%s%%\vR!a\t><8k%d70c]MsS3(", -537062062, -546213634, 2079449631, -1829040561, "[P\rTMxsEDXm]xA(mw=\viSI\f!l\\n3Pr?bNfY0&k|xy83RRbJuO^:P, v\n=h:>IqK1?\ni>T$AzJ9t&G{l9x/Vnlh\nLEm-uY)Z0", -129032948);
+		/* 38 */ test_printf_silent("%c'{pA'%xOT OTg-~@%u%X!c,ij(1=B", 1191786968, 683938925, -2025876822, -269951319);
+		/* 39 */ test_printf_silent("%XPc0%%X4u%x]B%c\f5iA+rlw%i@1T:%pdXQ$%Xn%cE/\fb1Tx&", -1774417775, 226795627, 1454399065, -1505433513, (void *)7142857988889739608, 1683439821, -438763108);
+		/* 40 */ test_printf_silent("w2;v~%Xa7>%xlf@{Qv%cMI4%c]PLc+24j", 18822944, 487994613, 78969586, 1981028337);
+		/* 41 */ test_printf_silent("\v]pUn7\f'Q+%s6VtlX(d%%%u-tOuI%xUZt.q>p5Go", "k\vXe wzDd+#UOXd/<Ue@M|.Uu6zBG\r;,T{6AzW<\n\tY_lU|[mrn{r8e\\\\z_N0i]RN/;v4q/8Y|Ul\vBE[AwjY=7%S", -1284501209, -1364217426);
+		/* 42 */ test_printf_silent("5%dQ,8%i0;@pI 4Tow%s;MyE(,\v%xPl&)<KI%pI&O%x%X\r%p$hn}B1-", -1671216371, 913179635, "8?+\\v|\"N!K'-~XvQ* _fWq6`#dx^\rc.7/>B,D}iTzF_j,z+4bvJ29#^LvdV&-8(!", 2001468577, (void *)6472039127533607882, -1660237423, -815032409, (void *)-8984621074987137016);
+		/* 43 */ test_printf_silent("3)%dF@lZAv%%\" qzvWRy.[%d/u%%\"s?_Oz%pRR[![H2%ca2$6e\f%p82UU%s\flL, '%pm", 23484404, -1710499949, (void *)-3491495066122021229, -1797138585, (void *)1525792136848450286, "L-0u\\<%}xt6ju_#no2yLU^x\fJ8JW^*\\?W]ubkE>[r\\9.xf:\\oYv&iq=f2(Vsf@`\rrB/)I)}vwNsM)", (void *)-7703680914263949236);
+		/* 44 */ test_printf_silent("752%u+G$%xL(t.%sw^%pt%x\v\"\f|iq", 76797247, -2049109327, ":CA W@'6X8-\tdsH(K\vQ(!a[Q4h?^v", (void *)-3860912229195644690, -589184991);
+		/* 45 */ test_printf_silent("\f\f%phiM@L=u1%X])2oa.zX%%j3fh$e6%%S$OE+\r", (void *)-4891975551911352197, 1255431054);
+		/* 46 */ test_printf_silent("`D3c%up=Fh\\lppk%%+d/%d|Tp6\\%Xy:%i\r\\%p[", -264877966, 913705749, -1443911808, -15985461, (void *)-7795494032949187809);
+		/* 47 */ test_printf_silent("5s%irpo9^%iw%dpD`G%Xd3O1\n%s6rn]%p$YmwsA'@io", 1451760278, -1201702481, 441804150, 256124046, ",--7NQF}T`&82f}\vy^Tex#}Lz#`QP6Fp(+R0R<4+^Up\v>jeH]*qs\fAN~\\=K-[\"\r!0G'DL^!znUu\fy`s", (void *)-1051531302073234169);
+		/* 48 */ test_printf_silent("b\"-U\t4QP5%x%d{PB,vS`-%xWW|:=g?\rc%i16YSL%%'h\t1<\"%XOR P9+_p4i%x96*T/%d[#\t}I?e97%i\n'", -496969074, -1254914359, 75021127, -862181097, 1863548653, -814699707, -403096121, 1555044262);
+		/* 49 */ test_printf_silent("lL'h%%8~ca,nZH%x>;Sgk%xe'%Xm>U-%d~dE0%sD%%+,PNi(K%iurv d%X:.92dAP^", 187449977, -1589434714, 1121684419, -2123842445, "5OzvCj9O#S`q&@FC_s.kV#'~mNs$s[ri.V\t", -2081185740, 1911262217);
+		/* 50 */ test_printf_silent("1%sR3hWrS%dc", "Fa]n", -323374493);
+		/* 51 */ test_printf_silent("t*_r\v%uEtWy%i]\t%dmdD%u5Y*%cKN.7%X6dy/a?\?n%iv1~k%%<T", 477861390, -101739126, 560802698, 1480214764, 1211709709, -833714381, -1174004211);
+		/* 52 */ test_printf_silent("!A.d*=%s%%a\\&)", "},");
+		/* 53 */ test_printf_silent("%x@scVq:_)%x}-EG`p.V%d7%Xq%u%iY2A#c(t\"\\R", 177277280, 360964684, -885030686, -1029038126, 1269892040, 521908812);
+		/* 54 */ test_printf_silent("/ \v%ca&v\fGH\\`!%cJ%%:%cN2X%d+", 1744085128, -252983465, -149346119, -881415461);
+		/* 55 */ test_printf_silent("2dmX%dh\"\t%dfo\f^%pntiz\nC9i}X%pb!f%p%iE>T6(\vf4%uu~`OHtJ%u*xmnd*\t<", 1750493791, -464458565, (void *)3407630629212742056, (void *)7691052412367390694, (void *)1036562013598947767, -772322408, -718326235, -1217338198);
+		/* 56 */ test_printf_silent(":8:'1\\;nBH%p(^[?*}x%c\v\r7$ac13=%coe%dF9iZ@WF%uEtBH", (void *)-7965211262681005474, -1482344211, 640083955, -1785266200, 411575343);
+		/* 57 */ test_printf_silent("\r\vFrENE%%n@Uk4)|(}%i\n0%XDII2$%d<W^k%sKV+k*%X (0\"Ad%%h[uA\f&sW%s@7%iU%Xl$)Q\\", 1041380024, 1445712426, -438038360, "`\fGOC*\"^[%V\t5FUmSp}UCyr7KKS6_e^jj6@_o\\Dl[C\"pJhz8Z", 189211505, "dw>\f_SPY\tt$7f k\n52,", 678148176, -1269057408);
+		/* 58 */ test_printf_silent("%c%X_%dM]!6gy!%s\"%i", -1291207472, 1455184154, 1657434991, "\t`J7[?\vEWP)!wQ4AUP*\f5{Y-3N\nTC|`/\n,I'\toyB=,M2,X+&~&XT", 910119426);
+		/* 59 */ test_printf_silent("mJ%%W;6|.Mt\t%i>r$E&\nbs\fl%%Ij8>5%x3N[#d3W%%1S%p%i\r6.d&%%K6iOVO\fl\n", 1046286042, -1100926470, (void *)-2053229477527853249, -1914940288);
+		/* 60 */ test_printf_silent("TW/t%urCKnPx5m%iY(pq%X:-4sd`r%s^hM]8 RN:g%p%x+uU ,ez*0O%xa@\n,P", -1058944274, 1871157849, 493532132, "R' bc<VO}!3?p6xp$K}4\r$4QxQMh6=A>?{o=8H6oH\r", (void *)1184841657596268904, 529906500, 1843585610);
+		/* 61 */ test_printf_silent("+G h\f&dhl%p%d?M%%s=%x=y&%xn%iuOXP%ukxrfcQ{S%pj0@$4`o4P%XQ(pU*i^e!%c ?6", (void *)-2718673967666186127, -535897535, 1268120040, -1953713686, 1922679294, -687361533, (void *)-8298571746316794019, -609712412, -1834363540);
+		/* 62 */ test_printf_silent("Fe%X0W\\%i<yoTW5%d5%i:Qt%xe`f!qm%c!\\%%hK{f%%{ |WQ%d_`I%csR7Fd?~\vH]", -1066799661, 613812448, -2001280589, 1537123333, 1972128398, -932432159, 1775850536, 1060736435);
+		/* 63 */ test_printf_silent("%cE%i%%.G%cou:%x\f65_Ojl%%", -2072636678, -813331735, -25484316, 1216178879);
+		/* 64 */ test_printf_silent("70\n%Xr_K4%pG5VO*u%i0", -950388578, (void *)6823439923981607167, -1411789349);
+		/* 65 */ test_printf_silent("GCdEqW_s\n%i8%XZ_=PaV+%%,11\nHs", 1170341233, -1794199661);
+		/* 66 */ test_printf_silent("[_<&%p3NjCe%x%s5!Q%u^RMW_42d%x+%%bu8]_8VDV2%xQ{o", (void *)5017852555246207609, -696571526, "w9tT[T;s@\t", -898819388, 1313720568, -772014703);
+		/* 67 */ test_printf_silent("\"s2]=\tS\\p9%xwV@N\nOT%s<u$d>%%v+O~%sAMQDO<%pFsQng:Y%iz\fnop%uL^TnIhGK7%d", -1711841072, "bLb(@>*F6=J:23]l;A}0-nq;g\vl~XrOLL\v%O_Mbw?)0%[Rn3i@l+\"KvEfB0aKE-&z$mX\tYb&w]:\f(R1\v\nWEQ8=_PCn:", "JPwdSu8Fz2DOZEi\fe(zm\fJ", (void *)3657981821483313417, -1345318072, 728978208, -572168631);
+		/* 68 */ test_printf_silent("5TP+%d!m%u!Kr%xJ.IHWHRG7%dA'6%p (Cj%i=zpV-%d]*S/i%%D%c-B\f%uUWjAs4", -1169868096, -1332524456, -1596829269, 140199012, (void *)-2046617123615895031, 1175871230, -154640619, 1192317464, 550959253);
+		/* 69 */ test_printf_silent("<W>XG%pTPE %ibMrh^`+02%x:{n%xJ 6!Yu%x}q", (void *)-8199427399499382042, -1935705697, -800700579, -961346996, -63090594);
+		/* 70 */ test_printf_silent("[Afd%cqb#YEDy5c%u^%%Ek.%cZ_3 r{8ww{%u%i.^].\"`?P%X/k[\t6\v[3ex", 579307422, -603798497, 1086017268, -145782607, -1815912119, -1268953498);
+		/* 71 */ test_printf_silent("_ADI&H`bB%p%%A~%u$-gfV\n#D", (void *)-5444396861704962111, 1639783071);
+		/* 72 */ test_printf_silent("%i,v%%Z*0J+VBN%XEPM%s/$;\rSM`%sl2PWr_#d6%ud<kG%cc", 598876874, -182534094, "'#!\v4Xj3/I*jWZ#\n\nf{{PWceS|a<{2[/\f\nkg0#].IHju:5_q$gc,,ZGEk>_dBpci[n+\vVs", "Bc+p\rFc(l$\r", -673322467, 1424155065);
+		/* 73 */ test_printf_silent("\f@%x_I{o.]%p;dl``pVJ\t%u2U]9X[\tR%dTRZ%%Cr>hD'%sv/$;(]/4F!%i|E\fi\f\fE %X81>S&~'%ca", 1373223337, (void *)-7950047903885374669, -1746454159, 1143730394, "ag#ntd[f&HWRC-DH5eJCt\t:@8#tF?%O/FXW$2xcG>]RZi.gIj,qup3'`k1\v8'L,_Rvu+zq\\", 2138307308, 279077262, -2145620740);
+		/* 74 */ test_printf_silent("%x%uUk%d=J6HV%c6\\i%X?+#^<1<U", -276100868, -1535806780, -1005134988, -972627332, -2068513803);
+		/* 75 */ test_printf_silent("*J~pJ&\n%d%ct%pBJnUQU,@D%s>F", -53839611, 1124753654, (void *)-3297153315701350294, "C91aeZ\tP`X;p>7\thYW)@q3'>MjC-phpL63OAvL7 b a${dPRU@2\f=g}8}J/g");
+		/* 76 */ test_printf_silent("w@lo{1\th%X|T[MC,%dN;<5}+)Rj%%%du,y%d%sp\vTph", -2098757230, 1701421157, 1162184898, -1897926443, "^I  NDl}iOq;>y\\MD'/\t2nX=VF\fxqnzH~@NQ@UebS\nDB-&pvD%C0y~7&D\rd ~\n!k=)");
+		/* 77 */ test_printf_silent("_BFxb%c'f!;Dj=+t=%p(Fx3)@", 194017152, (void *)212764989365904757);
+		/* 78 */ test_printf_silent("UeO3mAO%cJ)Z\\[%i%u%X8'%uCgD%ivpA/){Sxh %p+qBY%iaHTyZp%dM[+Lb/Yp\tL%cY ", 2036596024, 1695904336, -1842004332, -485124630, -110172616, 666182793, (void *)-4098449137566838112, 1564105180, 1971428611, 853245440);
+		/* 79 */ test_printf_silent("\\\fN/{=2%p:[|C%uAe%X3\nc%Xb`-eru%sw9{oXu;%%@\n,C\t&#\rM`%x3@l=.^kmJ%dEHbV", (void *)1464022014488034658, 896835802, 1157510184, -116913361, "2JX)_\ffW>(>l:@i#h,pG*|\vrF[H!4W9-DQ7.PFQJ6`\rcdRIj+\v[NG\\U$Ly5pr7v9cpTfXLei~|QemW],\ruB*)]j)5+", -87210284, 1552577656);
+		/* 80 */ test_printf_silent("[}d]%x+K=%x,%cpH%x&7c<%s90W'Qi%de!%pJ:w,_Y\v#G%i0WS%prI<Rx!G%cP@r", 1311509333, 1478406063, -598932271, -726126328, "$rH\v\"|*eA@l6nP/~<gPoY,hgC<|ANn(E \fk}xx)7kHtOpfQ\\. S/iB7w!jt[Ei?2+)E", -264120584, (void *)-3880498428776729531, 888309469, (void *)7420385501750976082, -226585577);
+		/* 81 */ test_printf_silent("~DW'dg%u\"%X", -1954425076, 1964366526);
+		/* 82 */ test_printf_silent(".\v%uW(s}%pO}g%c^NWJ$>U%ubc/>l%sTJ;a5Be/%x\n%up9c,{=^>%iS\t%poyO)LClK,", -1211210108, (void *)675494078939503170, -1159141307, 1252294386, "4KAt6", -318815228, -862353849, -2076676556, (void *)5551530091129824371);
+		/* 83 */ test_printf_silent("(5\t@70\t_~%XGt*sbkc^%cWGCEqE%%t{kl2:_M[\\%c;R,-`<!e\r?", -220387365, 1203582241, -2046950435);
+		/* 84 */ test_printf_silent("i#|X_%uCP%XVf`\"I;}w%sA_%x%Xl%X>!\rc^01", -943748312, 79791750, "2", -1772655762, 26957893, 1714364366);
+		/* 85 */ test_printf_silent("B&^%X^hEG/:Q%dD| ?737Uy2%x[b%X\n| i\\%d\r2C+%c7irtk%c9%c%ijk", 1430295077, -1495934558, -1020645738, 1932461033, 93691271, -1080545684, -2007375062, 1682782553, -1066006690);
+		/* 86 */ test_printf_silent("\\3g'MAI%p/~N%i\\%uO@;g(\"aFp%X%p&)psC)L\rP%s\tk+Cgos,zR%s]`zzKqIQ\vX%x/~%s&H09NE%c?L h", (void *)-6332685758336446505, 1770733877, 218535744, 1086645758, (void *)-586419453186405008, "QOLx(1I\v", "kHqJ74nFD,M#4y4f=aP!A|", 1781393921, "8,\"7sVD#Tj+U$M@+6m|U0.\r18osd\n6f_-i\nSebJzKA-olc(DfUOG", 281291097);
+		/* 87 */ test_printf_silent("jwcbk6EAUW%d2?<2p;B29%pj8y{<F'F\tf", 86035887, (void *)1956109005370732513);
+		/* 88 */ test_printf_silent("IM\fb \f\\~%i)Q|:\"[6c%pk*.WzAQ\\4%x", 593773326, (void *)847832988926922130, 893404901);
+		/* 89 */ test_printf_silent("\\xJjAok`Y%%vtj5{CN%sn}9(T;", "UM4;oT\r[=Ei|a7tPMn^$ _bzQPT3'mB0!HtU\r|\v4Z\vyNn/\v<`h$_eP\v Kjta{b(|E(jNCL;3 \r_DT/O");
+		/* 90 */ test_printf_silent("9r\"h[K%u(>Y,0\vTrn %%?%si%ss sIJ@\tq%%$Y%uDqzX\\V(T\vW%%DlGS@ \fa]o%xmm$fP", 864199840, ",lE$rO'\\+*UW:9b>C\\C<6+:u7\"0p*3NV\r52e\f,VL>2/F_%", "SM$!4<#.\f %0\rrxvgzo'", -1854070833, 339426061);
+		/* 91 */ test_printf_silent("Q~%%%p[UnyJM+|XU", (void *)6046201211439145167);
+		/* 92 */ test_printf_silent("%X\"[y\rhh*8%ifb%x&( u%s>R*x*rSH %%5\\d*~`V H", -1242196764, 1189921149, 1136019521, "n8F2Zfjp3eoPvUhuwDgSKYM'\\F6d\tQeU\\z$&oFG\v\tYY6A_AP`~V~qcQ7*\r)HJ9k1Tr");
+		/* 93 */ test_printf_silent("A2.E%d#)~S`\n[%%Y=n%p}-QOA+!", -442986643, (void *)-7591413010608033538);
+		/* 94 */ test_printf_silent("%iudMb1!oAc\\%s\v6%dEYs\v((m'%pL=F04Y<]\n%p?$0Wdv-AF%i:LS;\r%i9vmu3!dJ?%xs<vU1u%xj;UlPrTw%pFt 2\t", 2030821541, "\v?v9oAcm&Lam6Bt!PI'", -688759477, (void *)4199588980249534606, (void *)4876498153499640348, 1808888524, 131425850, -804443381, -731029645, (void *)4887429114929840072);
+		/* 95 */ test_printf_silent("lSt1fnX^W%im|3%cux9q$P%u1/61T{N>x%cRiC{wqh%i=S9hI", -1602253018, -1022713584, 2022391228, -1957739462, -2144860682);
+		/* 96 */ test_printf_silent("jj0%p-0fH*%%\tp$|II>%s_lk\tUz|%s%uWq(f33v;}.%p/8S tVTH%u+$N$&Qzw%c%izmE8^0WOKu", (void *)-8693788453850437782, "\\\\}#Im'=\t,^UWRo#gh!\"^D>.'uq+{\tvm\"Q;'*?(O;[ 5}^N$*1!&0m\f-(:?Ubbm?ro", "/]}tQJdD*T;tcA3\nW\vW\\E<\t!`]@7e(2h-;EG7ZFy19\tOM1(\nF<0N\fi%ax:Cp,YrLoik\\A4dwY{gq`", 1439478894, (void *)-3517099962992977251, 229347652, 1838541791, -1598776222);
+		/* 97 */ test_printf_silent("sTd\t~;;\v\v%s:zLYX[%xuHg%iQ7b9%X=A<\n^tb~%c%cN\vu16&J%c+=k%%%iGK", "^#<'Pb%~(j|c{F[h0;7slOnJ&^5%b:XY\n\rFo_+0\tG?SbQ7*.A ,'@HE?cn4jukn=\"\n>#*x%\t^:\rC6:x", 1881040445, -344950105, 691347967, -1754217964, 1815166230, -1301711659, -1909235887);
+		/* 98 */ test_printf_silent("/ctZ%u(PH?Jn%sH|P:} a~c%u", 1848007761, "@1%P\nu0\"fR}%1hZ0\r%9)>rF%a$E%$sf\tw,)n4\r3%k0pw]V+-rS2_|Vh<|=(|XLb%q", 1064665122);
+		/* 99 */ test_printf_silent(": $%im\fm;B%i%sMZrV:'g=%XuZA:=tR%i{9v\rF", -1062593888, 1305953702, "\vu*W}}]yHdTK\v@v?U4$efI=dB9f\tm)uGrvv/\\:LCh{BD%jN]T4V\\\v&c7|a<w\v}*\vYPP)n:x1kYO\"V0-THcu fxf>\\F:Fw", 1471344395, -1360289333);
+		/* 100 */ test_printf_silent("ku%%uj%cMPO\nW>}%ppM%x:ae^,a%u\\0@]C", 368278897, (void *)3492718916028443729, 1738674759, 1949800281);
+		/* 101 */ test_printf("`'%pm#e.u3\rAfT%c#7k*|X'm%cK)Bj491\r%Xu>JSg|@}Ik%p?\"p_E I%iBf;6%c", (void *)-6685721957524009424, -188303928, 1821163227, -1010785897, (void *)-6894343445131702248, 1694484744, -46964910);
+	});
+}

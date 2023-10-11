@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/07/14 20:44:23 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/11 14:48:31 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	main(void)
 {
 	//char *p =  "hola";
 
-	int M = ft_printf("%d", -10);
-	int O = printf("%d", -10);
-	printf("\n%d %d", M, O);
+	// int M = ft_printf("%d", -10);
+	// int O = printf("%d", -10);
+	// printf("\n%d %d", M, O);
+		ft_printf("%%%%%%");
 	return (0);
 }
 
