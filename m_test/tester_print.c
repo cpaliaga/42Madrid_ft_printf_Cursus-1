@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/11 14:48:31 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:42:21 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@ void    leaks(void)
 
 int	main(void)
 {
-	//char *p =  "hola";
+	int wd3 = ft_printf("%c", 42+'\0');
+    printf("\t%i", wd3);
+    printf(" -» ");
+    int or3 = printf("%c", 42+'\0');
+    printf("\t%i", or3);
+    printf("\n");
 
-	// int M = ft_printf("%d", -10);
-	// int O = printf("%d", -10);
-	// printf("\n%d %d", M, O);
-		ft_printf("%%%%%%");
+	int wd4 = ft_printf("%%%%%%");
+    printf("\t%i", wd4);
+    printf(" -» ");
+    int or4 = printf("%%%%%%");
+    printf("\t%i", or4);
+    printf("\n");
+
 	return (0);
 }
 

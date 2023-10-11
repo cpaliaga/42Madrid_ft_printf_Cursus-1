@@ -102,5 +102,12 @@ int main (void)
     printf("\t%i", or3);
     printf("\n");
 
+    printf("Prueba de Flags \n");
+    //int wf3 = ft_pchar("%%%%%");
+    //printf("\t%i", wf3);
+    int f3 = printf("%%%%%");
+    printf("\t%i", f3);
+    printf("\n");
+
     return (0);
 }
