@@ -6,18 +6,18 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:15 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/04/13 19:23:36 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:42:06 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_pnumber(int n)
+int	ft_pnumber(int n)
 {
-    int wr;
+	int	wr;
 
-    wr = 0;
-    if (n == -2147483648)
+	wr = 0;
+	if (n == -2147483648)
 		return (write(1, "-2147483648", 11));
 	else if (n == 0)
 		return (write(1, "0", 1));
@@ -28,33 +28,33 @@ int ft_pnumber(int n)
 			wr += write(1, "-", 1);
 			ft_pnumber(n = n * -1);
 		}
-        else
-        {
-            if (n > 9)
-                ft_pnumber(n / 10);
-            ft_pchar(n % 10 + '0');
-        }
+		else
+		{
+			if (n > 9)
+				ft_pnumber(n / 10);
+			ft_pchar(n % 10 + '0');
+		}
 	}
-    wr += ft_counter_int(n);
-    return (wr);
+	wr += ft_counter_int(n);
+	return (wr);
 }
 
 int	ft_unsigned(unsigned int n)
 {
-    int wr;
-    unsigned int nn;
+	int				wr;
+	unsigned int	nn;
 
-    wr = 0;
-    nn = n;
-    while (nn > 9)
-    {
-        wr += 1;
-        nn = nn / 10;
-    }
-    wr += 1;
-    if (n > 9)
-        ft_unsigned(n / 10);
-    ft_pchar(n % 10 + '0');
+	wr = 0;
+	nn = n;
+	while (nn > 9)
+	{
+		wr += 1;
+		nn = nn / 10;
+	}
+	wr += 1;
+	if (n > 9)
+		ft_unsigned(n / 10);
+	ft_pchar(n % 10 + '0');
 	return (wr);
 }
 
