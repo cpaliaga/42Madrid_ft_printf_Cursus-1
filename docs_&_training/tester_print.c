@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/16 18:03:29 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:01:44 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	main(void)
     printf("\t%i", or4);
     printf("\n");
 
-	/* int wd5 = ft_printf("%%%");
+	/*int wd5 = ft_printf("%%%");
     printf("\t%i", wd5);
     printf(" -» ");
-    int or5 = printf("%%%"); // error: spurious trailing ‘%’ in format [-Werror=format=]
+    int or5 = printf("%%%"); error: spurious trailing ‘%’ in format [-Werror=format=]
     printf("\t%i", or5);
-    printf("\n"); */
+    printf("\n");*/
 
 	int wd6 = ft_printf("%%c");
     printf("\t%i", wd6);
@@ -49,13 +49,6 @@ int	main(void)
     int or6 = printf("%%c");
     printf("\t%i", or6);
     printf("\n");
-
-    printf("PRUEBAS UNSIGNED\n");
-    int clon7 = ft_printf("%u", UINT_MAX);
-    printf("\t%i\n", clon7);
-    
-    int org7 = printf("%u", UINT_MAX);
-    printf("\t%i\n", org7);
 
 	return (0);
 }

@@ -3,22 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/20 17:58:52 by caliaga-          #+#    #+#              #
-#    Updated: 2023/06/14 17:36:49 by caliaga-         ###   ########.fr        #
+#    Updated: 2023/10/16 18:26:38 by caliaga-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DIR_SRC = ../
+DIR_SRC = ../M/
 FILES_SRC = ft_printf.c ft_util_char.c ft_util_number.c
 SRC = $(addprefix $(DIR_SRC), $(FILES_SRC))
 
-DIR_INC = ../
+DIR_INC = ../M/
 INC_H = ft_printf.h
 INC = $(addprefix $(DIR_INC), $(INC_H))
 
-DIR_LIB = ../
+DIR_LIB = ../M/
 LI = ftprintf
 LIB = $(addprefix lib, $(LI))
 NAME = $(addsuffix .a,$(addprefix $(DIR_LIB), $(LIB)))

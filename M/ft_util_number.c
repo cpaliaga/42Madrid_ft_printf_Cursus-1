@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:15 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/11 11:42:06 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:12:43 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_hex(unsigned int h, char bs, int *wr)
 void	ft_point(unsigned long long p, int *wr)
 {
 	char	*base;
-	char	pre[50];
+	char	pre[100];
 	int		i;
 
 	base = "0123456789abcdef";
