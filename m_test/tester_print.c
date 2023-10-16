@@ -21,10 +21,10 @@ void    leaks(void)
 
 int	main(void)
 {
-	int wd3 = ft_printf("%c", 42+'\0');
+	int wd3 = ft_printf(" %c", 42+'\0');
     printf("\t%i", wd3);
     printf(" -» ");
-    int or3 = printf("%c", 42+'\0');
+    int or3 = printf(" %c", 42+'\0');
     printf("\t%i", or3);
     printf("\n");
 
@@ -33,6 +33,20 @@ int	main(void)
     printf(" -» ");
     int or4 = printf("%%%%%%");
     printf("\t%i", or4);
+    printf("\n");
+
+	/*int wd5 = ft_printf("%%%");
+    printf("\t%i", wd5);
+    printf(" -» ");
+    int or5 = printf("%%%"); error: spurious trailing ‘%’ in format [-Werror=format=]
+    printf("\t%i", or5);
+    printf("\n");*/
+
+	int wd6 = ft_printf("%%c");
+    printf("\t%i", wd6);
+    printf(" -» ");
+    int or6 = printf("%%c");
+    printf("\t%i", or6);
     printf("\n");
 
 	return (0);

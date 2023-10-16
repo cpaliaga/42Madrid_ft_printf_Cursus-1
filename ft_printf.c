@@ -70,9 +70,11 @@ int	ft_printf(const char *phase, ...)
 			analysis_two(phase, &args, &wr);
 			phase++;
 		}
+		else if (*phase == '%' && !*(phase + 1))
+			return (-1);
 		else
 		{
-			wr += write(1, phase, 1);
+			wr += ft_pchar(*phase);
 			if (wr == -1)
 				return (-1);
 		}
