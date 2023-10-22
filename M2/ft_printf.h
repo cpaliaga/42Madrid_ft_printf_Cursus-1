@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:30 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/07/14 20:11:58 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/11 11:22:24 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-void    ft_pchar(int c, int *wr);
+void	ft_pchar(int c, int *wr);
 void	ft_pchain(char *chain, int *wr);
 void	ft_pnumber(int n, int *wr);
-void	ft_unsigned(unsigned int nb, int *wr);
+void	ft_unsigned(unsigned int n, int *wr);
 void	ft_hex(unsigned int h, char bs, int *wr);
 void	ft_point(unsigned long long p, int *wr);
 void	analysis_one(const char *phase, va_list *args, int *wr);

@@ -22,18 +22,74 @@ void    leaks(void)
 
 int	main(void)
 {
-	int wd3 = ft_printf(" %c", 42+'\0');
-    printf("\t%i", wd3);
+    printf("00 Prueba CHAR - ASCII no imprimible \\n \n");
+    int cc0 = ft_printf("%c", '\n');
+    printf("\t%i", cc0);
     printf(" -» ");
-    int or3 = printf(" %c", 42+'\0');
-    printf("\t%i", or3);
+    int oo0 = printf("%c", '\n');
+    printf("\t%i", oo0);
     printf("\n");
 
-	int wd4 = ft_printf("%%%%%%");
-    printf("\t%i", wd4);
+    printf("01 Prueba CHAR - ASCII no imprimible \\0 \n");
+    int cc1 = ft_printf("%c", '\0');
+    printf("\t%i", cc1);
     printf(" -» ");
-    int or4 = printf("%%%%%%");
-    printf("\t%i", or4);
+    int oo1 = printf("%c", '\0');
+    printf("\t%i", oo1);
+    printf("\n");
+
+    printf("02 Prueba CHAR - ASCII no imprimible \\t \n");
+    int cc2 = ft_printf("%c", '\t');
+    printf("\t%i", cc2);
+    printf(" -» ");
+    int oo2 = printf("%c", '\t');
+    printf("\t%i", oo2);
+    printf("\n");
+    
+    printf("03 Prueba CHAR - ASCII imprimible \n");
+    int cc3 = ft_printf("%c", '%');
+    printf("\t%i", cc3);
+    printf(" -» ");
+    int oo3 = printf("%c", '%');
+    printf("\t%i", oo3);
+    printf("\n");
+
+    printf("04 Prueba CHAR - ASCII imprimible 42+'\\0' \n");
+	int cc4 = ft_printf("%c", 42+'\0');
+    printf("\t%i", cc4);
+    printf(" -» ");
+    int oo4 = printf("%c", 42+'\0');
+    printf("\t%i", oo4);
+    printf("\n");
+
+    printf("05 Prueba CHAR - ASCII imprimible 42+'\\0' \n");
+	int cc5 = ft_printf("%c", 134+'\0');
+    printf("\t%i", cc5);
+    printf(" -» ");
+    int oo5 = printf("%c", 134+'\0');
+    printf("\t%i", oo5);
+    printf("\n");
+
+/*     printf("07 Prueba CHAR → ñ warning: multi-character character constant [-Wmultichar]\n");
+    int cc7 = ft_pchar('→');
+    printf("\t%i", cc7);
+    int oo7 = printf("%c", '→');
+    printf("\t%i", oo7);
+    printf("\n"); */
+
+/*     printf("06 Prueba CHAR error: empty character constant\n");
+    int cc6 = ft_pchar('');
+    printf("\t%i", cc6);
+    int oo6 = printf("%c", '');
+    printf("\t%i", oo6);
+    printf("\n"); */
+
+    printf("08 Prueba CHAR - ASCII imprimible 42+'\\0' \n");
+	int cc8 = ft_printf("%%%%%%");
+    printf("\t%i", cc8);
+    printf(" -» ");
+    int oo8 = printf("%%%%%%");
+    printf("\t%i", oo8);
     printf("\n");
 
 	/*int wd5 = ft_printf("%%%");

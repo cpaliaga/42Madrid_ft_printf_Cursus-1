@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/16 18:03:29 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:01:44 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,113 @@ void    leaks(void)
 
 int	main(void)
 {
-	int wd3 = ft_printf(" %c", 42+'\0');
-    printf("\t%i", wd3);
+    printf("00 Prueba CHAR - ASCII no imprimible \\n \n");
+    int cc0 = ft_printf("%c", '\n');
+    printf("\t%i", cc0);
     printf(" -» ");
-    int or3 = printf(" %c", 42+'\0');
-    printf("\t%i", or3);
+    int oo0 = printf("%c", '\n');
+    printf("\t%i", oo0);
     printf("\n");
 
-	int wd4 = ft_printf("%%%%%%");
-    printf("\t%i", wd4);
+    printf("01 Prueba CHAR - ASCII no imprimible \\0 \n");
+    int cc1 = ft_printf("%c", '\0');
+    printf("\t%i", cc1);
     printf(" -» ");
-    int or4 = printf("%%%%%%");
-    printf("\t%i", or4);
+    int oo1 = printf("%c", '\0');
+    printf("\t%i", oo1);
     printf("\n");
 
-	/* int wd5 = ft_printf("%%%");
-    printf("\t%i", wd5);
+    printf("02 Prueba CHAR - ASCII no imprimible \\t \n");
+    int cc2 = ft_printf("%c", '\t');
+    printf("\t%i", cc2);
     printf(" -» ");
-    int or5 = printf("%%%"); // error: spurious trailing ‘%’ in format [-Werror=format=]
-    printf("\t%i", or5);
+    int oo2 = printf("%c", '\t');
+    printf("\t%i", oo2);
+    printf("\n");
+    
+    printf("03 Prueba CHAR - ASCII imprimible \n");
+    int cc3 = ft_printf("%c", '%');
+    printf("\t%i", cc3);
+    printf(" -» ");
+    int oo3 = printf("%c", '%');
+    printf("\t%i", oo3);
+    printf("\n");
+
+    printf("04 Prueba CHAR - ASCII imprimible 42+'\\0' \n");
+	int cc4 = ft_printf("%c", 42+'\0');
+    printf("\t%i", cc4);
+    printf(" -» ");
+    int oo4 = printf("%c", 42+'\0');
+    printf("\t%i", oo4);
+    printf("\n");
+
+    printf("05 Prueba CHAR - ASCII imprimible 134+'\\0' \n");
+	int cc5 = ft_printf("%c", 134+'\0');
+    printf("\t%i", cc5);
+    printf(" -» ");
+    int oo5 = printf("%c", 134+'\0');
+    printf("\t%i", oo5);
+    printf("\n");
+
+/*     printf("07 Prueba CHAR → ñ warning: multi-character character constant [-Wmultichar]\n");
+    int cc7 = ft_pchar('→');
+    printf("\t%i", cc7);
+    int oo7 = printf("%c", '→');
+    printf("\t%i", oo7);
     printf("\n"); */
 
-	int wd6 = ft_printf("%%c");
+/*     printf("06 Prueba CHAR error: empty character constant\n");
+    int cc6 = ft_pchar('');
+    printf("\t%i", cc6);
+    int oo6 = printf("%c", '');
+    printf("\t%i", oo6);
+    printf("\n"); */
+
+    printf("08 Prueba SIN flags - ASCII imprimible '%%%%%%' \n");
+	int cc8 = ft_printf("%%%%%%");
+    printf("\t%i", cc8);
+    printf(" -» ");
+    int oo8 = printf("%%%%%%");
+    printf("\t%i", oo8);
+    printf("\n");
+
+    printf("09 Prueba SIN flags - ASCII imprimible '%%\\0%%' error: embedded ‘\\0’ in format [-Werror=format-contains-nul] \n");
+	int cc9 = ft_printf("%%\0%%");
+    printf("\t%i", cc9);
+    printf(" -» ");
+/*     int oo9 = printf("%%\0%%");
+    printf("\t%i", oo9); */
+    printf("\n");
+
+    printf("20 Prueba INT - \n");
+	int cc20 = ft_printf("%i", -2147483647);
+    printf("\t%i", cc20);
+    printf(" -» ");
+    int oo20 = printf("%i", -2147483647);
+    printf("\t%i", oo20);
+    printf("\n");
+
+    printf("21 Prueba UINT - \n");
+	int cc21 = ft_printf("%u", -2147483647);
+    printf("\t%i", cc21);
+    printf(" -» ");
+    int oo21 = printf("%u", -2147483647);
+    printf("\t%i", oo21);
+    printf("\n");
+
+	/*int wd5 = ft_printf("%%%");
+    printf("\t%i", wd5);
+    printf(" -» ");
+    int or5 = printf("%%%"); error: spurious trailing ‘%’ in format [-Werror=format=]
+    printf("\t%i", or5);
+    printf("\n");*/
+
+/* 	int wd6 = ft_printf("%%c");
     printf("\t%i", wd6);
     printf(" -» ");
     int or6 = printf("%%c");
     printf("\t%i", or6);
-    printf("\n");
-
-    printf("PRUEBAS UNSIGNED\n");
-    int clon7 = ft_printf("%u", UINT_MAX);
-    printf("\t%i\n", clon7);
-    
-    int org7 = printf("%u", UINT_MAX);
-    printf("\t%i\n", org7);
+    printf("\n"); */
 
 	return (0);
 }

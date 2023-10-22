@@ -1,39 +1,79 @@
 
 #include <unistd.h>
 #include <stdio.h>
-#include <limits.h>
+#include <limits.h> // Constantes de Valores máximos
 
 int	ft_pchain(char *chain);
 int ft_pchar(int c);
 
 int ft_pchar(int c)
 {
-	int wr;
-
-    wr = write(1, &c, 1);
-	if (wr == -1)
+	if (write(1, &c, 1) == -1)
 		return (-1);
-	return (wr);
+    else
+        return (1);
 }
 
 int	ft_pchain(char *chain)
 {
-    int     wr;
 	size_t	len;
 
-	wr = 0;
     len = 0;
 	if (!chain)
-		return (write(1, "(null)", 6));
-    else{
-        while (chain[len] != '\0')
-            len++;
-        return (write(1, chain, len));
+        chain = "(null)";
+    while (chain[len] != '\0')
+    {
+        if (ft_pchar(chain[len]) == -1)
+            return (-1);
+    	len++;
     }
+    return (len);
 }
 
 int main (void)
-{  
+{
+    printf("Prueba CHAR \n");
+    int cc0 = ft_pchar(42+'0');
+    printf("\t%i", cc0);
+    int oo0 = printf("%c", 42+'0');
+    printf("\t%i", oo0);
+    printf("\n");
+
+/*     printf("Prueba CHAR warning: multi-character character constant [-Wmultichar]\n");
+    int cc1 = ft_pchar('→');
+    printf("\t%i", cc1);
+    int oo1 = printf("%c", '→');
+    printf("\t%i", oo1);
+    printf("\n"); */
+
+/*     printf("Prueba CHAR error: empty character constant\n");
+    int cc2 = ft_pchar('');
+    printf("\t%i", cc2);
+    int oo2 = printf("%c", '');
+    printf("\t%i", oo2);
+    printf("\n"); */
+
+/*     printf("Prueba CHAR warning: multi-character character constant [-Wmultichar] \n");
+    int cc3 = ft_pchar('ñ');
+    printf("\t%i", cc3);
+    int oo3 = printf("%c", 'ñ');
+    printf("\t%i", oo3);
+    printf("\n"); */
+
+    printf("04 Prueba CHAR no imprimible \n");
+    int cc4 = ft_pchar('\n');
+    printf("\t%i", cc4);
+    int oo4 = printf("%c", '\n');
+    printf("\t%i", oo4);
+    printf("\n");
+
+    printf("05 Prueba CHAR ASCII no imprimible \n");
+    int cc5 = ft_pchar('\0');
+    printf("\t%i", cc5);
+    int oo5 = printf("%c", '\0');
+    printf("\t%i", oo5);
+    printf("\n");
+
     printf("Prueba de Caracteres ASCII IMPRIMIBLE \n");
     int cad0 = ft_pchain(" hola*");
     printf("\t%i", cad0);
@@ -109,5 +149,6 @@ int main (void)
     printf("\t%i", f3);
     printf("\n");
 /** spurious trailing ‘%’ in format [-Wformat=] int f3 = printf("%%%%%");*/
+  
     return (0);
 }

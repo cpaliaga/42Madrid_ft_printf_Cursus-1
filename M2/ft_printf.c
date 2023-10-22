@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/07/14 20:13:37 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:46:27 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,14 @@ int	ft_printf(const char *phase, ...)
 			analysis_two(phase, &args, &wr);
 			phase++;
 		}
+		else if ((*phase == '%' && !*(phase + 1)) || wr == -1)
+			return (-1);
 		else
 		{
-			wr += write(1, phase, 1);
+			ft_pchar(*phase, &wr);
 			if (wr == -1)
-				return (0);
+				return (-1);
+			wr += 1;
 		}
 		phase++;
 	}
