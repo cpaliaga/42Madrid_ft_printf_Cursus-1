@@ -69,17 +69,12 @@ void	ft_hex(unsigned int h, char bs, int *wr)
 	base = base_hex(bs);
 	i = 0;
 	if (h > 15)
-		ft_hex(h / 16, bs, wr);
-	if (*wr != -1)
-	
-	while ((h / 16) > 0)
 	{
-		pre[i++] = base[(h % 16)];
-		h /= 16;
+		ft_hex(h / 16, bs, wr);
+		ft_hex(h % 16, bs, wr);
 	}
-	pre[i] = base[(h % 16)];
-	while (i >= 0)
-		ft_pchar(pre[i--], wr);
+	else
+		ft_pchar(base[h], wr);
 }
 
 void	ft_point(unsigned long long p, int *wr)
