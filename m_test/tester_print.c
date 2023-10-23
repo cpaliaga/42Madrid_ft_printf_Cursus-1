@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 12:37:51 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:41:49 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,27 @@ int	main(void)
     printf("\t%i", oo21);
     printf("\n");
 
-    printf("22 Prueba SIN Flags - \n");
+/*     printf("22 Prueba SIN Flags - \n");
 	int cc22 = ft_printf("%%c");
     printf("\t%i", cc212);
     printf(" -» ");
     int oo22 = printf("%%c");
     printf("\t%i", oo22);
+    printf("\n"); */
+
+    printf("23 Prueba UINT - \n");
+	int cc23 = ft_printf("%d", INT_MIN);
+    printf("\t%i", cc23);
+    printf(" -» ");
+    int oo23 = printf("%d", INT_MIN);
+    printf("\t%i", oo23);
     printf("\n");
 
+ /**
+  *   TEST(23, print(" %d ", INT_MIN));
+53:     TEST(29, print(" %d %d %d %d %d %d %d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
+
+ */
 	/*int wd5 = ft_printf("%%%");
     printf("\t%i", wd5);
     printf(" -» ");
