@@ -6,39 +6,69 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:36 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 12:52:36 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:04:51 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_pchar(int c,	int	*wr)
+int	ft_pchar(int c)
 {
-	if (write (1, &c, 1) == -1)
-	{
-		*wr = -1;
+	int	wr;
+
+	wr = write(1, &c, 1);
+	if (wr == -1)
+		return (-1);
+	return (wr);
+}
+
+int	ft_pchain(char *chain)
+{
+	int		wr;
+	size_t	len;
+
+	wr = 0;
+	len = 0;
+	if (!chain)
+	{	
+		wr = write(1, "(null)", 6);
+		if (wr == -1)
+			return (-1);
+		return (wr);
 	}
 	else
 	{
-		*wr += 1;
+		while (chain[len] != '\0')
+			len++;
+		wr = write(1, chain, len);
+		if (wr == -1)
+			return (-1);
+		return (wr);
 	}
 }
 
-void	ft_pchain(char *chain, int *wr)
+int	ft_counter_int(int n)
 {
-	size_t	len;
+	int	wr;
 
-	len = 0;
-	if (!chain)
+	wr = 0;
+	if (n == -2147483648)
+		wr += 11;
+	else if (n == 0)
+		wr += 1;
+	else
 	{
-		ft_pchain("(null)", wr);
-		return ;
+		if (n < 0)
+			wr += 1;
+		else
+		{
+			while (n > 9)
+			{
+				wr += 1;
+				n = n / 10;
+			}
+			wr += 1;
+		}
 	}
-	while (chain[len] != '\0')
-	{
-		ft_pchar(chain[len], wr);
-		if (*wr == -1)
-			return ;
-		len++;
-	}
+	return (wr);
 }

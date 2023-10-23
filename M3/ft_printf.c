@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 12:43:03 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:46:27 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	analysis_one(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'c')
 	{
-		ft_pchar(va_arg(*args, int), wr);
+		*wr += ft_pchar(va_arg(*args, int));
 		phase++;
 	}
 	else if (*(phase + 1) == '%')
 	{
-		ft_pchar('%', wr);
+		*wr += ft_pchar('%');
 		phase++;
 	}
 	else if (*(phase + 1) == 's')
 	{
-		ft_pchain(va_arg (*args, char *), wr);
+		*wr += ft_pchain(va_arg (*args, char *));
 		phase++;
 	}
 }
@@ -35,12 +35,12 @@ void	analysis_two(const char *phase, va_list *args, int *wr)
 {
 	if (*(phase + 1) == 'd' || *(phase + 1) == 'i')
 	{
-		ft_pnumber(va_arg(*args, int), wr);
+		*wr += ft_pnumber(va_arg(*args, int));
 		phase++;
 	}
 	else if (*(phase + 1) == 'u')
 	{
-		ft_unsigned(va_arg(*args, unsigned int), wr);
+		*wr += ft_unsigned(va_arg(*args, unsigned int));
 		phase++;
 	}
 	else if (*(phase + 1) == 'x' || *(phase + 1) == 'X')
@@ -74,7 +74,7 @@ int	ft_printf(const char *phase, ...)
 			return (-1);
 		else
 		{
-			ft_pchar(*phase, &wr);
+			wr += ft_pchar(*phase);
 			if (wr == -1)
 				return (-1);
 		}

@@ -6,49 +6,56 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:15 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 13:00:55 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:12:43 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_pnumber(int n, int *wr)
+int	ft_pnumber(int n)
 {
+	int	wr;
+
+	wr = 0;
 	if (n == -2147483648)
-	{
-		if (write (1, "-2147483648", 11) == -1)
-			*wr = -1;
-		else
-			*wr += 1;
-	}
-	if (n < 0)
-	{
-		ft_pchar('-', wr);
-		ft_pnumber(n = n * -1, wr);
-	}
+		return (write(1, "-2147483648", 11));
+	else if (n == 0)
+		return (write(1, "0", 1));
 	else
 	{
-		if (n > 9)
-			ft_pnumber(n / 10, wr);
-		if (*wr != -1)
+		if (n < 0)
 		{
-			ft_pchar(n % 10 + '0', wr);
-			if (*wr == -1)
-				return ;
+			wr += write(1, "-", 1);
+			ft_pnumber(n = n * -1);
+		}
+		else
+		{
+			if (n > 9)
+				ft_pnumber(n / 10);
+			ft_pchar(n % 10 + '0');
 		}
 	}
+	wr += ft_counter_int(n);
+	return (wr);
 }
 
-void	ft_unsigned(unsigned int n, int *wr)
+int	ft_unsigned(unsigned int n)
 {
-	if (n > 9)
-		ft_unsigned(n / 10, wr);
-	if (*wr != -1)
+	int				wr;
+	unsigned int	nn;
+
+	wr = 0;
+	nn = n;
+	while (nn > 9)
 	{
-		ft_pchar(n % 10 + '0', wr);
-		if (*wr == -1)
-			return ;
+		wr += 1;
+		nn = nn / 10;
 	}
+	wr += 1;
+	if (n > 9)
+		ft_unsigned(n / 10);
+	ft_pchar(n % 10 + '0');
+	return (wr);
 }
 
 void	ft_hex(unsigned int h, char bs, int *wr)
@@ -63,7 +70,7 @@ void	ft_hex(unsigned int h, char bs, int *wr)
 		base = "0123456789abcdef";
 	i = 0;
 	if (h == 0)
-		ft_pchar('0', wr);
+		*wr += write(1, "0", 1);
 	else
 	{
 		while ((h / 16) > 0)
@@ -73,7 +80,7 @@ void	ft_hex(unsigned int h, char bs, int *wr)
 		}
 		pre[i] = base[(h % 16)];
 		while (i >= 0)
-			ft_pchar(pre[i--], wr);
+			*wr += write(1, &pre[i--], 1);
 	}
 }
 
@@ -85,9 +92,9 @@ void	ft_point(unsigned long long p, int *wr)
 
 	base = "0123456789abcdef";
 	i = 0;
-	ft_pchain("0x", wr);
+	*wr += write(1, "0x", 2);
 	if (p == 0)
-		ft_pchar('0', wr);
+		*wr += write(1, "0", 1);
 	else
 	{
 		while ((p / 16) > 0)
@@ -97,10 +104,6 @@ void	ft_point(unsigned long long p, int *wr)
 		}
 		pre[i] = base[(p % 16)];
 		while (i >= 0)
-		{
-			ft_pchar(pre[i--], wr);
-			if (*wr == -1)
-				return ;
-		}
+			*wr += write(1, &pre[i--], 1);
 	}
 }

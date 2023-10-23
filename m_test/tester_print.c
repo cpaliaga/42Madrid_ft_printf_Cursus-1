@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/16 18:01:44 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:37:51 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,14 @@ int	main(void)
     printf(" -» ");
     int oo21 = printf("%u", -2147483647);
     printf("\t%i", oo21);
+    printf("\n");
+
+    printf("22 Prueba SIN Flags - \n");
+	int cc22 = ft_printf("%%c");
+    printf("\t%i", cc212);
+    printf(" -» ");
+    int oo22 = printf("%%c");
+    printf("\t%i", oo22);
     printf("\n");
 
 	/*int wd5 = ft_printf("%%%");
