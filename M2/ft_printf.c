@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 16:28:35 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:55:48 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void	analysis_two(const char *phase, va_list *args, int *wr)
 	}
 	else if (*(phase + 1) == 'p')
 	{
-		ft_point(va_arg(*args, unsigned long long), wr);
+		ft_point(va_arg(*args, unsigned long long int), wr);
+		if (wr < 0)
+			*wr = -1;
+			return ;
 		phase++;
 	}
 }
@@ -68,6 +71,8 @@ int	ft_printf(const char *phase, ...)
 		{
 			analysis_one(phase, &args, &wr);
 			analysis_two(phase, &args, &wr);
+			if (wr < 0)
+				break ;
 			phase++;
 		}
 		else

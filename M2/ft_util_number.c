@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:15 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 16:44:33 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:38:29 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,37 +68,31 @@ void	ft_hex(unsigned int h, char bs, int *wr)
 
 	base = base_hex(bs);
 	i = 0;
-	if (h > 15)
+	while ((h / 16) > 0)
 	{
-		ft_hex(h / 16, bs, wr);
-		ft_hex(h % 16, bs, wr);
+		pre[i++] = base[(h % 16)];
+		h /= 16;
 	}
-	else
-		ft_pchar(base[h], wr);
+	pre[i] = base[(h % 16)];
+	while (i >= 0)
+		ft_pchar(pre[i--], wr);
 }
 
 void	ft_point(unsigned long long p, int *wr)
 {
 	char	*base;
-	char	pre[100];
+	char	pre[50];
 	int		i;
 
 	base = "0123456789abcdef";
 	i = 0;
 	ft_pchain("0x", wr);
-	if (p == 0)
-		ft_pchar('0', wr);
-	else
+	while ((p / 16) > 0)
 	{
-		while ((p / 16) > 0)
-		{
-			pre[i++] = base[(p % 16)];
-			p /= 16;
-		}
-		pre[i] = base[(p % 16)];
-		while (i >= 0)
-		{
-			ft_pchar(pre[i--], wr);
-		}
+		pre[i++] = base[(p % 16)];
+		p /= 16;
 	}
+	pre[i] = base[(p % 16)];
+	while (i >= 0)
+		ft_pchar(pre[i--], wr);
 }
