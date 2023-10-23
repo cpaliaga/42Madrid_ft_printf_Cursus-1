@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 17:59:13 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 13:55:49 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:28:35 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_printf(const char *phase, ...)
 		{
 			ft_pchar(*phase, &wr);
 			if (wr < 0)
-				return (-1);
+				break ;
 		}
 		phase++;
 	}

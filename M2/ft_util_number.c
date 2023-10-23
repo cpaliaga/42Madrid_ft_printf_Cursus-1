@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:15 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 14:34:30 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:44:33 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_pnumber(int n, int *wr)
 		if (*wr != -1)
 		{
 			ft_pchar(n % 10 + '0', wr);
-		
 		}
 	}
 }
@@ -56,9 +55,9 @@ void	ft_unsigned(unsigned int n, int *wr)
 char	*base_hex(char bs)
 {
 	if (bs == 'X')
-		return("0123456789ABCDEF");
+		return ("0123456789ABCDEF");
 	else
-		return("0123456789abcdef");
+		return ("0123456789abcdef");
 }
 
 void	ft_hex(unsigned int h, char bs, int *wr)
@@ -69,6 +68,10 @@ void	ft_hex(unsigned int h, char bs, int *wr)
 
 	base = base_hex(bs);
 	i = 0;
+	if (h > 15)
+		ft_hex(h / 16, bs, wr);
+	if (*wr != -1)
+	
 	while ((h / 16) > 0)
 	{
 		pre[i++] = base[(h % 16)];
