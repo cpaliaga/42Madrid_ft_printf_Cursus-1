@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:37:15 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 18:38:29 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:25:27 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,14 @@ void	ft_hex(unsigned int h, char bs, int *wr)
 	}
 	pre[i] = base[(h % 16)];
 	while (i >= 0)
+	{
 		ft_pchar(pre[i--], wr);
+		if (*wr < 0)
+		{
+			*wr = -1;
+			break ;
+		}
+	}
 }
 
 void	ft_point(unsigned long long p, int *wr)
@@ -94,5 +101,12 @@ void	ft_point(unsigned long long p, int *wr)
 	}
 	pre[i] = base[(p % 16)];
 	while (i >= 0)
+	{
 		ft_pchar(pre[i--], wr);
+		if (*wr < 0)
+		{
+			*wr = -1;
+			break ;
+		}
+	}
 }

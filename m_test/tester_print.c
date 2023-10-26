@@ -6,7 +6,7 @@
 /*   By: caliaga- <caliaga-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 19:38:16 by caliaga-          #+#    #+#             */
-/*   Updated: 2023/10/23 18:46:38 by caliaga-         ###   ########.fr       */
+/*   Updated: 2023/10/24 11:54:28 by caliaga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,22 @@ int	main(void)
     printf(" -» ");
     int oo24 = printf("%p", "");
     printf("\t%i", oo24);
+    printf("\n");
+
+    printf("25 Prueba puntero '""' - \n");
+	int cc25 = ft_printf("%p", (void *)-14523);
+    printf("\t%i", cc25);
+    printf(" -» ");
+    int oo25 = printf("%p", (void *)-14523);
+    printf("\t%i", oo25);
+    printf("\n");
+
+    printf("26 Prueba puntero '""' - \n");
+	int cc26 = ft_printf("0x%p-", (void *)ULONG_MAX);
+    printf("\t%i", cc26);
+    printf(" -» ");
+    int oo26 = printf("0x%p-", (void *)ULONG_MAX);
+    printf("\t%i", oo26);
     printf("\n");
 
  /**
